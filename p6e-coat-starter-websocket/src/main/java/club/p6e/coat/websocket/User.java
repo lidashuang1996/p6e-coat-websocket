@@ -6,5 +6,8 @@ import java.io.Serializable;
  * @author lidashuang
  * @version 1.0
  */
-public class UserDataModel implements Serializable {
+public interface User extends Serializable {
+
+    public String id();
+
 }
