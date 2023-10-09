@@ -107,14 +107,29 @@ final class SessionManager {
     /**
      * 推送消息
      *
+     * @param filter 过滤器对象
+     * @param name   服务名称
+     * @param bytes  消息内容
+     */
+    public static void pushBinary(Function<User, Boolean> filter, String name, byte[] bytes) {
+        final List<List<Session>> list = getChannel();
+        for (final List<Session> channels : list) {
+            if (channels != null && !channels.isEmpty()) {
+                submit(channels, filter, name, bytes);
+            }
+        }
+    }
+
+    /**
+     * 推送消息
+     *
      * @param filter  过滤器对象
-     * @param group   用户组
+     * @param name    服务名称
      * @param id      消息编号
      * @param type    消息类型
      * @param content 消息内容
      */
-    public static void push(Function<User, Boolean> filter,
-                            String group, String id, String type, String content) {
+    public static void pushText(Function<User, Boolean> filter, String name, String id, String type, String content) {
         final List<List<Session>> list = getChannel();
         final Map<String, String> data = new HashMap<>();
         data.put("id", id);
@@ -123,18 +138,30 @@ final class SessionManager {
         final String wc = JsonUtil.toJson(data);
         for (final List<Session> channels : list) {
             if (channels != null && !channels.isEmpty()) {
-                EXECUTOR.submit(() -> {
-                    for (final Session session : channels) {
-                        if (group.equalsIgnoreCase(session.getGroup())) {
-                            final Boolean result = filter.apply(session.getUser());
-                            if (result != null && result) {
-                                session.push(wc);
-                            }
-                        }
-                    }
-                });
+                submit(channels, filter, name, wc);
             }
         }
+    }
+
+    /**
+     * 提交任务
+     *
+     * @param channels 频道对象
+     * @param filter   过滤器对象
+     * @param name     服务名称
+     * @param content  消息内容
+     */
+    private static void submit(List<Session> channels, Function<User, Boolean> filter, String name, Object content) {
+        EXECUTOR.submit(() -> {
+            for (final Session session : channels) {
+                if (name.equalsIgnoreCase(session.getName())) {
+                    final Boolean result = filter.apply(session.getUser());
+                    if (result != null && result) {
+                        session.push(content);
+                    }
+                }
+            }
+        });
     }
 
 }

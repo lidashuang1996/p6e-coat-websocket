@@ -19,7 +19,14 @@ final class Heartbeat {
     /**
      * 心跳的文本
      */
-    public static final String CONTENT = "{\"type\":\"heartbeat\"}";
+    public static final String CONTENT_TEXT = "{\"type\":\"heartbeat\"}";
+
+    /**
+     * 心跳的字节码
+     */
+    public static final byte[] CONTENT_BYTES = new byte[]{
+            16, 0, 0, 0, 16, 0, 1, 0, 0, 0, 0, 0, 4, 0, 0, 0
+    };
 
     /**
      * 轮训间隔时间

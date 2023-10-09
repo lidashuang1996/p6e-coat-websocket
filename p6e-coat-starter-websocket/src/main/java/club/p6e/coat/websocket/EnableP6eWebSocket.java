@@ -24,10 +24,12 @@ public @interface EnableP6eWebSocket {
     @Documented
     @Target({ElementType.METHOD})
     @Retention(RetentionPolicy.RUNTIME)
-    public @interface Config {
-        String name() default "DEFAULT";
-
+    @interface Config {
         int port() default 9600;
+
+        String type() default "TEXT";
+
+        String name() default "DEFAULT";
     }
 
     /**

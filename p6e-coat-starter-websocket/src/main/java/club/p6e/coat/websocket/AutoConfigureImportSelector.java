@@ -52,6 +52,7 @@ public class AutoConfigureImportSelector implements ImportSelector {
             if (attributes.get("value") instanceof final AnnotationAttributes[] annotationAttributes) {
                 for (final AnnotationAttributes annotationAttribute : annotationAttributes) {
                     WebSocketMain.CONFIGS.add(new WebSocketMain.Config()
+                            .setType(String.valueOf(annotationAttribute.get("type")))
                             .setName(String.valueOf(annotationAttribute.get("name")))
                             .setPort(Integer.parseInt(String.valueOf(annotationAttribute.get("port"))))
                     );
@@ -62,8 +63,9 @@ public class AutoConfigureImportSelector implements ImportSelector {
             }
             if (WebSocketMain.CONFIGS.size() == 0) {
                 WebSocketMain.CONFIGS.add(new WebSocketMain.Config()
-                        .setName("DEFAULT")
                         .setPort(9600)
+                        .setType("TEXT")
+                        .setName("DEFAULT")
                 );
             }
         }

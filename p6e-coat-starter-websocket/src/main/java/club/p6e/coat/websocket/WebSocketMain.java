@@ -43,6 +43,11 @@ public class WebSocketMain {
          * 服务端口
          */
         private Integer port;
+
+        /**
+         * 服务类型
+         */
+        private String type;
     }
 
     /**
@@ -73,7 +78,7 @@ public class WebSocketMain {
     public WebSocketMain(Auth auth) {
         this.auth = auth;
         for (final Config config : CONFIGS) {
-            init(config.getPort(), config.getName(), THREAD_POOL_LENGTH);
+            init(config.getPort(), config.getName(), config.getType(), THREAD_POOL_LENGTH);
         }
     }
 
@@ -82,41 +87,54 @@ public class WebSocketMain {
      *
      * @param port             端口
      * @param name             服务名称
+     * @param type             消息类型
      * @param threadPoolLength 线程池大小
      */
-    public void init(int port, String name, int threadPoolLength) {
-        init(port, auth, name, threadPoolLength);
+    public void init(int port, String name, String type, int threadPoolLength) {
+        init(auth, port, name, type, threadPoolLength);
+    }
+
+    /**
+     * 推送消息
+     *
+     * @param filter 过滤器对象
+     * @param name   消息组
+     * @param bytes  消息内容
+     */
+    public void push(Function<User, Boolean> filter, String name, byte[] bytes) {
+        SessionManager.pushBinary(filter, name, bytes);
     }
 
     /**
      * 推送消息
      *
      * @param filter  过滤器对象
-     * @param group   消息组
+     * @param name    消息组
      * @param id      消息编号
      * @param type    消息类型
      * @param content 消息内容
      */
-    public void push(Function<User, Boolean> filter, String group, String id, String type, String content) {
-        SessionManager.push(filter, group, id, type, content);
+    public void push(Function<User, Boolean> filter, String name, String id, String type, String content) {
+        SessionManager.pushText(filter, name, id, type, content);
     }
 
     /**
      * 初始化方法
      *
-     * @param port             启动的端口
      * @param auth             认证对象
+     * @param port             启动的端口
      * @param name             服务名称
+     * @param type             服务类型
      * @param threadPoolLength 启动的处理消息的线程池大小
      */
-    private static void init(int port, Auth auth, String name, int threadPoolLength) {
+    private static void init(Auth auth, int port, String name, String type, int threadPoolLength) {
         Heartbeat.init();
         SessionManager.init(threadPoolLength);
         new Thread() {
             @Override
             public void run() {
                 super.run();
-                netty(port, auth, name);
+                netty(auth, port, name, type);
             }
         }.start();
     }
@@ -124,11 +142,12 @@ public class WebSocketMain {
     /**
      * Netty WebSocket 服务启动
      *
-     * @param port 启动的端口
      * @param auth 认证对象
+     * @param port 启动的端口
      * @param name 服务名称
+     * @param type 服务类型
      */
-    private static void netty(int port, Auth auth, String name) {
+    private static void netty(Auth auth, int port, String name, String type) {
         final EventLoopGroup boss = new NioEventLoopGroup();
         final EventLoopGroup work = new NioEventLoopGroup();
         try {
@@ -145,7 +164,7 @@ public class WebSocketMain {
                             "/ws", null, true,
                             65536, false, true));
                     // 自定义
-                    channel.pipeline().addLast(new Handler(auth, name));
+                    channel.pipeline().addLast(new Handler(auth, name, type));
                 }
             });
             final Channel channel = bootstrap.bind(port).sync().channel();
@@ -153,7 +172,8 @@ public class WebSocketMain {
                 boss.shutdownGracefully();
                 work.shutdownGracefully();
             }));
-            LOGGER.info("[ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( " + port + " )");
+            LOGGER.info("[ WEBSOCKET SERVICE ] (" + name + " : "
+                    + type + ") ==> START SUCCESSFULLY... BIND ( " + port + " )");
             channel.closeFuture().sync();
         } catch (Exception e) {
             LOGGER.error("[ WEBSOCKET SERVICE ]", e);
