@@ -1,18 +1,26 @@
 package club.p6e.coat.websocket;
 
+import club.p6e.coat.common.utils.GeneratorUtil;
 import io.netty.channel.ChannelHandlerContext;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 认证（默认）
+ *
  * @author lidashuang
  * @version 1.0
  */
 @Component
-public class DefaultAuth implements Auth<User> {
+@ConditionalOnMissingBean(
+        value = Auth.class,
+        ignored = DefaultAuth.class
+)
+public class DefaultAuth implements Auth {
 
     @Override
     public String award(HttpServletRequest request) {
@@ -20,16 +28,17 @@ public class DefaultAuth implements Auth<User> {
     }
 
     @Override
-    public Session<User> validate(String uri, ChannelHandlerContext context) {
-        final Map<String, String> params = getParams(uri);
-        if (params == null || params.isEmpty()
-                || (params.get("v") == null && params.get("voucher") == null)) {
-            return null;
-        }
-        final String voucher = params.get("v") == null ? params.get("voucher") : params.get("v");
-        return new Session<>(context, (User) () -> voucher);
+    public User validate(String uri) {
+        final String voucher = getVoucher(uri);
+        return () -> voucher;
     }
 
+    /**
+     * 获取 URL 参数
+     *
+     * @param uri 请求的 URL
+     * @return 参数
+     */
     protected Map<String, String> getParams(String uri) {
         final int index = uri.indexOf("?");
         final Map<String, String> result = new HashMap<>();
@@ -49,6 +58,15 @@ public class DefaultAuth implements Auth<User> {
             }
         }
         return result;
+    }
+
+    protected String getVoucher(String uri) {
+        final Map<String, String> params = getParams(uri);
+        if (params == null || params.isEmpty()
+                || (params.get("v") == null && params.get("voucher") == null)) {
+            return null;
+        }
+        return params.get("v") == null ? params.get("voucher") : params.get("v");
     }
 
 }

@@ -42,18 +42,24 @@ final class Heartbeat {
         }
     }
 
+    /**
+     * 任务
+     */
     private static class Task implements Runnable {
 
+        /**
+         * 注入日志对象
+         */
         private static final Logger LOGGER = LoggerFactory.getLogger(Task.class);
 
         @Override
         public void run() {
             try {
                 final long now = System.currentTimeMillis();
-                final Iterator<Session<?>> iterator = SessionManager.all();
+                final Iterator<Session> iterator = SessionManager.all();
                 while (iterator.hasNext()) {
                     try {
-                        final Session<?> session = iterator.next();
+                        final Session session = iterator.next();
                         if (now - session.getDate() > INTERVAL * 1000) {
                             session.close();
                         }

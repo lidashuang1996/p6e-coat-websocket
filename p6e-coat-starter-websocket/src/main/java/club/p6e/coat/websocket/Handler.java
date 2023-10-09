@@ -1,5 +1,6 @@
 package club.p6e.coat.websocket;
 
+import club.p6e.coat.common.utils.GeneratorUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.PingWebSocketFrame;
@@ -17,8 +18,16 @@ import org.slf4j.LoggerFactory;
  */
 final class Handler implements ChannelInboundHandler {
 
+    /**
+     * 登录成功写入内容
+     */
     private static final String LOGIN_CONTENT = "{\"type\":\"login\"}";
+
+    /**
+     * 登出成功写入内容
+     */
     private static final String LOGOUT_CONTENT = "{\"type\":\"logout\"}";
+
     /**
      * 注入日志对象
      */
@@ -29,16 +38,28 @@ final class Handler implements ChannelInboundHandler {
      */
     private final String id;
 
-    private final Auth<?> auth;
+    /**
+     * 认证对象
+     */
+    private final Auth auth;
 
-    private Session<?> session;
+    /**
+     * 服务名称
+     */
+    private final String name;
+
+    /**
+     * 会话对象
+     */
+    private Session session;
 
     /**
      * 构造方法初始化
      */
-    public Handler(Auth<?> auth) {
+    public Handler(Auth auth, String name) {
         this.id = GeneratorUtil.uuid() + GeneratorUtil.random();
         this.auth = auth;
+        this.name = name;
     }
 
     @Override
@@ -86,8 +107,9 @@ final class Handler implements ChannelInboundHandler {
     public void userEventTriggered(ChannelHandlerContext channelHandlerContext, Object o) {
         LOGGER.debug("[ " + id + " ] ==> userEventTriggered, msg: " + o.getClass());
         if (o instanceof final WebSocketServerProtocolHandler.HandshakeComplete complete) {
-            session = auth.validate(complete.requestUri(), channelHandlerContext);
-            if (session != null) {
+            final User user = auth.validate(complete.requestUri());
+            if (user != null) {
+                session = new Session(user, name, channelHandlerContext);
                 SessionManager.register(id, session);
                 channelHandlerContext.writeAndFlush(new TextWebSocketFrame(LOGIN_CONTENT));
                 return;
