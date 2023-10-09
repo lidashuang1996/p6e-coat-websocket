@@ -1,0 +1,748 @@
+2023-10-09 10:42:02 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 43888 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 10:42:02 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 10:42:02 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 10:42:02 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 10:42:02 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 10:42:02 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 10:42:02 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 10:42:02 [main] INFO - Starting service [Tomcat]
+2023-10-09 10:42:02 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 10:42:03 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 10:42:03 [main] INFO - Root WebApplicationContext: initialization completed in 574 ms
+2023-10-09 10:42:03 [main] WARN - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'customController' defined in file [D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes\club\p6e\coat\demo\websocket\CustomController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'club.p6e.coat.websocket.Auth' available: expected single matching bean but found 2: customAuth,club.p6e.coat.websocket.DefaultAuth
+2023-10-09 10:42:03 [main] INFO - Stopping service [Tomcat]
+2023-10-09 10:42:03 [main] INFO - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2023-10-09 10:42:03 [main] ERROR - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in club.p6e.coat.demo.websocket.CustomController required a single bean, but 2 were found:
+	- customAuth: defined in file [D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes\club\p6e\coat\demo\websocket\CustomAuth.class]
+	- club.p6e.coat.websocket.DefaultAuth: defined in unknown location
+
+
+Action:
+
+Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
+
+2023-10-09 10:45:03 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 115764 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 10:45:03 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 10:45:04 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 10:45:04 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 10:45:04 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 10:45:04 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 10:45:04 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 10:45:04 [main] INFO - Starting service [Tomcat]
+2023-10-09 10:45:04 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 10:45:04 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 10:45:04 [main] INFO - Root WebApplicationContext: initialization completed in 554 ms
+2023-10-09 10:45:04 [main] WARN - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'customController' defined in file [D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes\club\p6e\coat\demo\websocket\CustomController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'club.p6e.coat.websocket.Auth' available: expected single matching bean but found 2: customAuth,club.p6e.coat.websocket.DefaultAuth
+2023-10-09 10:45:04 [main] INFO - Stopping service [Tomcat]
+2023-10-09 10:45:04 [main] INFO - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2023-10-09 10:45:04 [main] ERROR - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in club.p6e.coat.demo.websocket.CustomController required a single bean, but 2 were found:
+	- customAuth: defined in file [D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes\club\p6e\coat\demo\websocket\CustomAuth.class]
+	- club.p6e.coat.websocket.DefaultAuth: defined in unknown location
+
+
+Action:
+
+Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
+
+2023-10-09 10:46:25 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 78380 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 10:46:25 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 10:46:25 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 10:46:25 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 10:46:25 [main] INFO - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2023-10-09 10:46:25 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 10:46:25 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 10:46:25 [main] INFO - Starting service [Tomcat]
+2023-10-09 10:46:25 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 10:46:25 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 10:46:25 [main] INFO - Root WebApplicationContext: initialization completed in 565 ms
+2023-10-09 10:46:26 [main] WARN - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'customController' defined in file [D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes\club\p6e\coat\demo\websocket\CustomController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'club.p6e.coat.websocket.Auth' available: expected single matching bean but found 2: customAuth,club.p6e.coat.websocket.DefaultAuth
+2023-10-09 10:46:26 [main] INFO - Stopping service [Tomcat]
+2023-10-09 10:46:26 [main] INFO - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2023-10-09 10:46:26 [main] ERROR - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in club.p6e.coat.demo.websocket.CustomController required a single bean, but 2 were found:
+	- customAuth: defined in file [D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes\club\p6e\coat\demo\websocket\CustomAuth.class]
+	- club.p6e.coat.websocket.DefaultAuth: defined in unknown location
+
+
+Action:
+
+Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
+
+2023-10-09 10:47:58 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 55164 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 10:47:58 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 10:47:58 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 10:47:58 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 10:47:58 [main] INFO - Finished Spring Data repository scanning in 9 ms. Found 0 Redis repository interfaces.
+2023-10-09 10:47:58 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 10:47:58 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 10:47:58 [main] INFO - Starting service [Tomcat]
+2023-10-09 10:47:58 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 10:47:58 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 10:47:58 [main] INFO - Root WebApplicationContext: initialization completed in 637 ms
+2023-10-09 10:47:59 [main] WARN - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'customController' defined in file [D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes\club\p6e\coat\demo\websocket\CustomController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'club.p6e.coat.websocket.Auth' available: expected single matching bean but found 2: customAuth,club.p6e.coat.websocket.DefaultAuth
+2023-10-09 10:47:59 [main] INFO - Stopping service [Tomcat]
+2023-10-09 10:47:59 [main] INFO - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2023-10-09 10:47:59 [main] ERROR - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in club.p6e.coat.demo.websocket.CustomController required a single bean, but 2 were found:
+	- customAuth: defined in file [D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes\club\p6e\coat\demo\websocket\CustomAuth.class]
+	- club.p6e.coat.websocket.DefaultAuth: defined in unknown location
+
+
+Action:
+
+Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
+
+2023-10-09 10:48:13 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 48284 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 10:48:13 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 10:48:13 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 10:48:13 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 10:48:13 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 10:48:13 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 10:48:13 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 10:48:13 [main] INFO - Starting service [Tomcat]
+2023-10-09 10:48:13 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 10:48:13 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 10:48:13 [main] INFO - Root WebApplicationContext: initialization completed in 598 ms
+2023-10-09 10:48:14 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 10:48:14 [main] WARN - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'club.p6e.coat.websocket.Controller' method 
+club.p6e.coat.websocket.Controller#auth(HttpServletRequest)
+to { [/auth]}: There is already 'customController' bean method
+club.p6e.coat.demo.websocket.CustomController#auth(HttpServletRequest) mapped.
+2023-10-09 10:48:14 [main] INFO - Stopping service [Tomcat]
+2023-10-09 10:48:14 [main] INFO - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2023-10-09 10:48:14 [main] ERROR - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'club.p6e.coat.websocket.Controller' method 
+club.p6e.coat.websocket.Controller#auth(HttpServletRequest)
+to { [/auth]}: There is already 'customController' bean method
+club.p6e.coat.demo.websocket.CustomController#auth(HttpServletRequest) mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1770) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:941) ~[spring-context-6.0.9.jar:6.0.9]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608) ~[spring-context-6.0.9.jar:6.0.9]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:733) ~[spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:435) ~[spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:311) ~[spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1305) ~[spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1294) ~[spring-boot-3.1.0.jar:3.1.0]
+	at club.p6e.coat.demo.websocket.P6eWebSocketDemoApplication.main(P6eWebSocketDemoApplication.java:16) ~[classes/:na]
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'club.p6e.coat.websocket.Controller' method 
+club.p6e.coat.websocket.Controller#auth(HttpServletRequest)
+to { [/auth]}: There is already 'customController' bean method
+club.p6e.coat.demo.websocket.CustomController#auth(HttpServletRequest) mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:667) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:633) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:331) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:438) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:76) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:298) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:721) ~[na:na]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:296) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:265) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:224) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:212) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:225) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1816) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766) ~[spring-beans-6.0.9.jar:6.0.9]
+	... 16 common frames omitted
+2023-10-09 10:51:00 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 110724 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 10:51:00 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 10:51:00 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 10:51:00 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 10:51:00 [main] INFO - Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2023-10-09 10:51:01 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 10:51:01 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 10:51:01 [main] INFO - Starting service [Tomcat]
+2023-10-09 10:51:01 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 10:51:01 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 10:51:01 [main] INFO - Root WebApplicationContext: initialization completed in 549 ms
+2023-10-09 10:51:01 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 10:51:01 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 10:51:01 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 10:51:01 [main] INFO - Started P6eWebSocketDemoApplication in 1.272 seconds (process running for 1.532)
+2023-10-09 10:51:01 [main] INFO - smart construction application initialization complete ...
+2023-10-09 10:52:34 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 15284 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 10:52:34 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 10:52:34 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 10:52:34 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 10:52:34 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 10:52:35 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 10:52:35 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 10:52:35 [main] INFO - Starting service [Tomcat]
+2023-10-09 10:52:35 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 10:52:35 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 10:52:35 [main] INFO - Root WebApplicationContext: initialization completed in 565 ms
+2023-10-09 10:52:35 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 10:52:35 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 10:52:35 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 10:52:35 [main] INFO - Started P6eWebSocketDemoApplication in 1.312 seconds (process running for 1.593)
+2023-10-09 10:52:35 [main] INFO - smart construction application initialization complete ...
+2023-10-09 10:53:36 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 10:53:36 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 10:53:36 [http-nio-9000-exec-1] INFO - Completed initialization in 0 ms
+2023-10-09 10:53:42 [http-nio-9000-exec-3] ERROR - { AUTH_EXCEPTION <2000> } ::: [ class club.p6e.coat.demo.websocket.CustomAuth ] => (class club.p6e.coat.common.error.AuthException) ===> fun award(HttpServletRequest request).
+2023-10-09 10:54:21 [http-nio-9000-exec-4] ERROR - { AUTH_EXCEPTION <2000> } ::: [ class club.p6e.coat.demo.websocket.CustomAuth ] => (class club.p6e.coat.common.error.AuthException) ===> fun award(HttpServletRequest request).
+2023-10-09 10:56:54 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 103396 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 10:56:54 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 10:56:54 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 10:56:54 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 10:56:54 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 10:56:55 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 10:56:55 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 10:56:55 [main] INFO - Starting service [Tomcat]
+2023-10-09 10:56:55 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 10:56:55 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 10:56:55 [main] INFO - Root WebApplicationContext: initialization completed in 549 ms
+2023-10-09 10:56:55 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 10:56:55 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 10:56:55 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 10:56:55 [main] INFO - Started P6eWebSocketDemoApplication in 1.298 seconds (process running for 1.576)
+2023-10-09 10:56:55 [main] INFO - smart construction application initialization complete ...
+2023-10-09 10:57:49 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 16548 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 10:57:49 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 10:57:49 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 10:57:49 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 10:57:49 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 10:57:49 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 10:57:49 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 10:57:49 [main] INFO - Starting service [Tomcat]
+2023-10-09 10:57:49 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 10:57:49 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 10:57:49 [main] INFO - Root WebApplicationContext: initialization completed in 555 ms
+2023-10-09 10:57:49 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 10:57:50 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 10:57:50 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 10:57:50 [main] INFO - Started P6eWebSocketDemoApplication in 1.305 seconds (process running for 1.598)
+2023-10-09 10:57:50 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:00:23 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:00:23 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:00:23 [http-nio-9000-exec-1] INFO - Completed initialization in 1 ms
+2023-10-09 11:03:00 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 9312 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:03:00 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:03:01 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:03:01 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:03:01 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:03:01 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:03:01 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:03:01 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:03:01 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:03:01 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:03:01 [main] INFO - Root WebApplicationContext: initialization completed in 574 ms
+2023-10-09 11:03:01 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:03:01 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:03:01 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:03:01 [main] INFO - Started P6eWebSocketDemoApplication in 1.343 seconds (process running for 1.632)
+2023-10-09 11:03:01 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:03:18 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:03:18 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:03:18 [http-nio-9000-exec-1] INFO - Completed initialization in 0 ms
+2023-10-09 11:10:40 [http-nio-9000-exec-5] INFO - Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x010x020x1a0x010x000x020x160x030x03(0x910x910xd60xa90xa30xc8e/0xc40xfa0x050xf20x830xf00xdbg0xbd"0x016!m10x140xd370xda0x050xe50x0d` ]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:407) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:263) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+2023-10-09 11:12:05 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 36196 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:12:05 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:12:05 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:12:05 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:12:05 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:12:05 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:12:05 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:12:05 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:12:05 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:12:05 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:12:05 [main] INFO - Root WebApplicationContext: initialization completed in 558 ms
+2023-10-09 11:12:06 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:12:06 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:12:06 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:12:06 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:12:06 [main] INFO - Started P6eWebSocketDemoApplication in 1.322 seconds (process running for 1.592)
+2023-10-09 11:12:06 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:12:14 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:12:14 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:12:14 [http-nio-9000-exec-1] INFO - Completed initialization in 1 ms
+2023-10-09 11:13:55 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 62832 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:13:55 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:13:56 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:13:56 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:13:56 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:13:56 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:13:56 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:13:56 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:13:56 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:13:56 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:13:56 [main] INFO - Root WebApplicationContext: initialization completed in 553 ms
+2023-10-09 11:13:56 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:13:56 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:13:56 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:13:56 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:13:56 [main] INFO - Started P6eWebSocketDemoApplication in 1.337 seconds (process running for 1.602)
+2023-10-09 11:13:56 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:14:00 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:14:00 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:14:00 [http-nio-9000-exec-1] INFO - Completed initialization in 0 ms
+2023-10-09 11:15:33 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 33348 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:15:33 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:15:33 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:15:33 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:15:33 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:15:34 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:15:34 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:15:34 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:15:34 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:15:34 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:15:34 [main] INFO - Root WebApplicationContext: initialization completed in 542 ms
+2023-10-09 11:15:34 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:15:34 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:15:34 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:15:34 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:15:34 [main] INFO - Started P6eWebSocketDemoApplication in 1.293 seconds (process running for 1.567)
+2023-10-09 11:15:34 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:15:36 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:15:36 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:15:36 [http-nio-9000-exec-1] INFO - Completed initialization in 1 ms
+2023-10-09 11:16:09 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 28096 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:16:09 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:16:10 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:16:10 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:16:10 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:16:10 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:16:10 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:16:10 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:16:10 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:16:10 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:16:10 [main] INFO - Root WebApplicationContext: initialization completed in 556 ms
+2023-10-09 11:16:10 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:16:10 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:16:10 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:16:10 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:16:10 [main] INFO - Started P6eWebSocketDemoApplication in 1.283 seconds (process running for 1.547)
+2023-10-09 11:16:10 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:16:15 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:16:15 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:16:15 [http-nio-9000-exec-1] INFO - Completed initialization in 0 ms
+2023-10-09 11:16:16 [nioEventLoopGroup-5-1] INFO - [ 57e668327ffb4405b8c75d820c2b1110953339 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$ServerHandshakeStateEvent
+2023-10-09 11:16:16 [nioEventLoopGroup-5-1] INFO - [ 57e668327ffb4405b8c75d820c2b1110953339 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$HandshakeComplete
+2023-10-09 11:17:36 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 83512 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:17:36 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:17:36 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:17:36 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:17:36 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:17:36 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:17:36 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:17:36 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:17:36 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:17:36 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:17:36 [main] INFO - Root WebApplicationContext: initialization completed in 589 ms
+2023-10-09 11:17:36 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:17:36 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:17:37 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:17:37 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:17:37 [main] INFO - Started P6eWebSocketDemoApplication in 1.339 seconds (process running for 1.607)
+2023-10-09 11:17:37 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:17:39 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:17:39 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:17:39 [http-nio-9000-exec-1] INFO - Completed initialization in 0 ms
+2023-10-09 11:17:41 [nioEventLoopGroup-5-1] INFO - [ 731553d188484f20bf5a658f4647eb76903454 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$ServerHandshakeStateEvent
+2023-10-09 11:17:41 [nioEventLoopGroup-5-1] INFO - [ 731553d188484f20bf5a658f4647eb76903454 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$HandshakeComplete
+2023-10-09 11:18:19 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 86616 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:18:19 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:18:19 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:18:19 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:18:19 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:18:19 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:18:19 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:18:19 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:18:19 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:18:19 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:18:19 [main] INFO - Root WebApplicationContext: initialization completed in 547 ms
+2023-10-09 11:18:20 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:18:20 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:18:20 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:18:20 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:18:20 [main] INFO - Started P6eWebSocketDemoApplication in 1.284 seconds (process running for 1.548)
+2023-10-09 11:18:20 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:18:23 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:18:23 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:18:23 [http-nio-9000-exec-1] INFO - Completed initialization in 1 ms
+2023-10-09 11:18:25 [nioEventLoopGroup-5-1] INFO - [ 41c114da6dcc4a818e89486b6365f5a1208871 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$ServerHandshakeStateEvent
+2023-10-09 11:18:25 [nioEventLoopGroup-5-1] INFO - [ 41c114da6dcc4a818e89486b6365f5a1208871 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$HandshakeComplete
+2023-10-09 11:19:16 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 76448 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:19:16 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:19:17 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:19:17 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:19:17 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:19:17 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:19:17 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:19:17 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:19:17 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:19:17 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:19:17 [main] INFO - Root WebApplicationContext: initialization completed in 542 ms
+2023-10-09 11:19:17 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:19:17 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:19:17 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:19:17 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:19:17 [main] INFO - Started P6eWebSocketDemoApplication in 1.282 seconds (process running for 1.554)
+2023-10-09 11:19:17 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:19:21 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:19:21 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:19:21 [http-nio-9000-exec-1] INFO - Completed initialization in 0 ms
+2023-10-09 11:19:24 [nioEventLoopGroup-5-1] INFO - [ 46fe9d631341431092c0dc9708dd5f8e469377 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$ServerHandshakeStateEvent
+2023-10-09 11:19:24 [nioEventLoopGroup-5-1] INFO - [ 46fe9d631341431092c0dc9708dd5f8e469377 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$HandshakeComplete
+2023-10-09 11:20:03 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 50488 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:20:03 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:20:03 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:20:03 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:20:03 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:20:04 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:20:04 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:20:04 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:20:04 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:20:04 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:20:04 [main] INFO - Root WebApplicationContext: initialization completed in 567 ms
+2023-10-09 11:20:04 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:20:04 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:20:04 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:20:04 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:20:04 [main] INFO - Started P6eWebSocketDemoApplication in 1.316 seconds (process running for 1.618)
+2023-10-09 11:20:04 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:20:07 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:20:07 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:20:07 [http-nio-9000-exec-1] INFO - Completed initialization in 0 ms
+2023-10-09 11:20:09 [nioEventLoopGroup-5-1] INFO - [ 8f984e9bf0644c79be230d54121a50da172527 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$ServerHandshakeStateEvent
+2023-10-09 11:20:09 [nioEventLoopGroup-5-1] INFO - [ 8f984e9bf0644c79be230d54121a50da172527 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$HandshakeComplete
+2023-10-09 11:20:44 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 33036 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:20:44 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:20:45 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:20:45 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:20:45 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:20:45 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:20:45 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:20:45 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:20:45 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:20:45 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:20:45 [main] INFO - Root WebApplicationContext: initialization completed in 544 ms
+2023-10-09 11:20:45 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:20:45 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:20:45 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:20:45 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:20:45 [main] INFO - Started P6eWebSocketDemoApplication in 1.257 seconds (process running for 1.524)
+2023-10-09 11:20:45 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:20:48 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:20:48 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:20:48 [http-nio-9000-exec-1] INFO - Completed initialization in 0 ms
+2023-10-09 11:20:50 [nioEventLoopGroup-5-1] INFO - [ 7d3c55f8e5b748b1860c0a850dfe9991696582 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$ServerHandshakeStateEvent
+2023-10-09 11:20:50 [nioEventLoopGroup-5-1] INFO - [ 7d3c55f8e5b748b1860c0a850dfe9991696582 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$HandshakeComplete
+2023-10-09 11:21:09 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 34808 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:21:09 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:21:09 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:21:09 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:21:09 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:21:09 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:21:09 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:21:09 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:21:09 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:21:09 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:21:09 [main] INFO - Root WebApplicationContext: initialization completed in 548 ms
+2023-10-09 11:21:10 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:21:10 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:21:10 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:21:10 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:21:10 [main] INFO - Started P6eWebSocketDemoApplication in 1.27 seconds (process running for 1.53)
+2023-10-09 11:21:10 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:21:12 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:21:12 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:21:12 [http-nio-9000-exec-1] INFO - Completed initialization in 0 ms
+2023-10-09 11:21:14 [nioEventLoopGroup-5-1] INFO - [ da674701d34a402d9382579cd3a1f2aa764698 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$ServerHandshakeStateEvent
+2023-10-09 11:21:14 [nioEventLoopGroup-5-1] INFO - [ da674701d34a402d9382579cd3a1f2aa764698 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$HandshakeComplete
+2023-10-09 11:21:35 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 101244 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:21:35 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:21:35 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:21:35 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:21:35 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:21:36 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:21:36 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:21:36 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:21:36 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:21:36 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:21:36 [main] INFO - Root WebApplicationContext: initialization completed in 561 ms
+2023-10-09 11:21:36 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:21:36 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:21:36 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:21:36 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:21:36 [main] INFO - Started P6eWebSocketDemoApplication in 1.278 seconds (process running for 1.535)
+2023-10-09 11:21:36 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:21:39 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:21:39 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:21:39 [http-nio-9000-exec-1] INFO - Completed initialization in 0 ms
+2023-10-09 11:21:42 [nioEventLoopGroup-5-1] INFO - [ 85a5e0cf2f77480a9d0933b4e05b678c664337 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$ServerHandshakeStateEvent
+2023-10-09 11:21:42 [nioEventLoopGroup-5-1] INFO - [ 85a5e0cf2f77480a9d0933b4e05b678c664337 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$HandshakeComplete
+2023-10-09 11:22:19 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 97260 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:22:19 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:22:20 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:22:20 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:22:20 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:22:20 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:22:20 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:22:20 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:22:20 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:22:20 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:22:20 [main] INFO - Root WebApplicationContext: initialization completed in 591 ms
+2023-10-09 11:22:20 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:22:20 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:22:20 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:22:20 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:22:20 [main] INFO - Started P6eWebSocketDemoApplication in 1.338 seconds (process running for 1.597)
+2023-10-09 11:22:20 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:22:23 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:22:23 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:22:23 [http-nio-9000-exec-1] INFO - Completed initialization in 1 ms
+2023-10-09 11:22:25 [nioEventLoopGroup-5-1] INFO - [ 0fcd58b1c35f453790fe8bdb4b7ae9d9277508 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$ServerHandshakeStateEvent
+2023-10-09 11:22:25 [nioEventLoopGroup-5-1] INFO - [ 0fcd58b1c35f453790fe8bdb4b7ae9d9277508 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$HandshakeComplete
+2023-10-09 11:23:25 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 76196 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:23:25 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:23:25 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:23:25 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:23:25 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:23:25 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:23:25 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:23:25 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:23:25 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:23:25 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:23:25 [main] INFO - Root WebApplicationContext: initialization completed in 568 ms
+2023-10-09 11:23:25 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:23:25 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:23:26 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:23:26 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:23:26 [main] INFO - Started P6eWebSocketDemoApplication in 1.313 seconds (process running for 1.577)
+2023-10-09 11:23:26 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:23:27 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:23:27 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:23:27 [http-nio-9000-exec-1] INFO - Completed initialization in 0 ms
+2023-10-09 11:23:31 [nioEventLoopGroup-5-1] INFO - [ 960fd1cf523f4b7ea66d346e0fede073094247 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$ServerHandshakeStateEvent
+2023-10-09 11:23:31 [nioEventLoopGroup-5-1] INFO - [ 960fd1cf523f4b7ea66d346e0fede073094247 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$HandshakeComplete
+2023-10-09 11:24:38 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 27256 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:24:38 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:24:39 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:24:39 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:24:39 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:24:39 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:24:39 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:24:39 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:24:39 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:24:39 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:24:39 [main] INFO - Root WebApplicationContext: initialization completed in 539 ms
+2023-10-09 11:24:39 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:24:39 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:24:39 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:24:39 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:24:39 [main] INFO - Started P6eWebSocketDemoApplication in 1.278 seconds (process running for 1.538)
+2023-10-09 11:24:39 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:24:42 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:24:42 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:24:42 [http-nio-9000-exec-1] INFO - Completed initialization in 0 ms
+2023-10-09 11:24:44 [nioEventLoopGroup-5-1] INFO - [ e613d8767b5349aa9cb8fbdb686d4a4f685672 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$ServerHandshakeStateEvent
+2023-10-09 11:24:44 [nioEventLoopGroup-5-1] INFO - [ e613d8767b5349aa9cb8fbdb686d4a4f685672 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$HandshakeComplete
+2023-10-09 11:26:35 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 89492 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:26:35 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:26:35 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:26:35 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:26:35 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:26:35 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:26:35 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:26:35 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:26:35 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:26:35 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:26:35 [main] INFO - Root WebApplicationContext: initialization completed in 574 ms
+2023-10-09 11:26:35 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:26:35 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:26:36 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:26:36 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:26:36 [main] INFO - Started P6eWebSocketDemoApplication in 1.34 seconds (process running for 1.611)
+2023-10-09 11:26:36 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:26:41 [http-nio-9000-exec-2] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:26:41 [http-nio-9000-exec-2] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:26:41 [http-nio-9000-exec-2] INFO - Completed initialization in 1 ms
+2023-10-09 11:26:43 [nioEventLoopGroup-5-1] INFO - [ 3331494dcd3a47ee872aad6e3902f0c9008217 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$ServerHandshakeStateEvent
+2023-10-09 11:26:43 [nioEventLoopGroup-5-1] INFO - [ 3331494dcd3a47ee872aad6e3902f0c9008217 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$HandshakeComplete
+2023-10-09 11:27:04 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 98012 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:27:04 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:27:05 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:27:05 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:27:05 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:27:05 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:27:05 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:27:05 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:27:05 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:27:05 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:27:05 [main] INFO - Root WebApplicationContext: initialization completed in 583 ms
+2023-10-09 11:27:05 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:27:05 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:27:05 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:27:05 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:27:05 [main] INFO - Started P6eWebSocketDemoApplication in 1.364 seconds (process running for 1.621)
+2023-10-09 11:27:05 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:27:07 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:27:07 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:27:07 [http-nio-9000-exec-1] INFO - Completed initialization in 0 ms
+2023-10-09 11:27:10 [nioEventLoopGroup-5-1] INFO - [ e786f6e8e9ab47edbf5af945e8c994fe520236 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$ServerHandshakeStateEvent
+2023-10-09 11:27:10 [nioEventLoopGroup-5-1] INFO - [ e786f6e8e9ab47edbf5af945e8c994fe520236 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$HandshakeComplete
+2023-10-09 11:27:51 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 117448 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:27:51 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:27:51 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:27:51 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:27:51 [main] INFO - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:27:52 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:27:52 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:27:52 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:27:52 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:27:52 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:27:52 [main] INFO - Root WebApplicationContext: initialization completed in 550 ms
+2023-10-09 11:27:52 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:27:52 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:27:52 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:27:52 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:27:52 [main] INFO - Started P6eWebSocketDemoApplication in 1.272 seconds (process running for 1.534)
+2023-10-09 11:27:52 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:27:54 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:27:54 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:27:54 [http-nio-9000-exec-1] INFO - Completed initialization in 0 ms
+2023-10-09 11:27:56 [nioEventLoopGroup-5-1] INFO - [ c6782cf71d824d9fa91b8606079ede2c867513 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$ServerHandshakeStateEvent
+2023-10-09 11:27:56 [nioEventLoopGroup-5-1] INFO - [ c6782cf71d824d9fa91b8606079ede2c867513 ] ==> userEventTriggered, msg: class io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler$HandshakeComplete
+2023-10-09 11:28:24 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 32492 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:28:24 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:28:24 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:28:24 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:28:24 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:28:24 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:28:24 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:28:24 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:28:24 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:28:24 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:28:24 [main] INFO - Root WebApplicationContext: initialization completed in 539 ms
+2023-10-09 11:28:25 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:28:25 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:28:25 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:28:25 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:28:25 [main] INFO - Started P6eWebSocketDemoApplication in 1.254 seconds (process running for 1.516)
+2023-10-09 11:28:25 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:28:30 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:28:30 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:28:30 [http-nio-9000-exec-1] INFO - Completed initialization in 0 ms
+2023-10-09 11:31:05 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 21532 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:31:05 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:31:05 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:31:05 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:31:05 [main] INFO - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:31:05 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:31:05 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:31:05 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:31:05 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:31:05 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:31:05 [main] INFO - Root WebApplicationContext: initialization completed in 544 ms
+2023-10-09 11:31:06 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:31:06 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:31:06 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:31:06 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:31:06 [main] INFO - Started P6eWebSocketDemoApplication in 1.277 seconds (process running for 1.533)
+2023-10-09 11:31:06 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:31:57 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:31:57 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:31:57 [http-nio-9000-exec-1] INFO - Completed initialization in 1 ms
+2023-10-09 11:31:57 [http-nio-9000-exec-1] ERROR - { PARAMETER_EXCEPTION <1000> } ::: [ class club.p6e.coat.demo.websocket.CustomController ] => (class club.p6e.coat.common.error.ParameterException) ===> fun push(PushParam param).
+2023-10-09 11:32:28 [http-nio-9000-exec-3] ERROR - { PARAMETER_EXCEPTION <1000> } ::: [ class club.p6e.coat.demo.websocket.CustomController ] => (class club.p6e.coat.common.error.ParameterException) ===> fun push(PushParam param).
+2023-10-09 11:32:59 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 120836 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:32:59 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:32:59 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:32:59 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:32:59 [main] INFO - Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:33:00 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:33:00 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:33:00 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:33:00 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:33:00 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:33:00 [main] INFO - Root WebApplicationContext: initialization completed in 564 ms
+2023-10-09 11:33:00 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:33:00 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:33:00 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:33:00 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:33:00 [main] INFO - Started P6eWebSocketDemoApplication in 1.295 seconds (process running for 1.57)
+2023-10-09 11:33:00 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:33:02 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:33:02 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:33:02 [http-nio-9000-exec-1] INFO - Completed initialization in 0 ms
+2023-10-09 11:33:02 [http-nio-9000-exec-1] ERROR - { PARAMETER_EXCEPTION <1000> } ::: [ class club.p6e.coat.demo.websocket.CustomController ] => (class club.p6e.coat.common.error.ParameterException) ===> fun push(PushParam param).
+2023-10-09 11:33:42 [main] INFO - Starting P6eWebSocketDemoApplication using Java 17.0.7 with PID 66088 (D:\CodeContents\github\p6e-coat-websocket\p6e-coat-starter-websocket-demo\target\classes started by a1294 in D:\CodeContents\github\p6e-coat-websocket)
+2023-10-09 11:33:42 [main] INFO - No active profile set, falling back to 1 default profile: "default"
+2023-10-09 11:33:43 [main] INFO - Multiple Spring Data modules found, entering strict repository configuration mode
+2023-10-09 11:33:43 [main] INFO - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-10-09 11:33:43 [main] INFO - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2023-10-09 11:33:43 [main] INFO - Tomcat initialized with port(s): 9000 (http)
+2023-10-09 11:33:43 [main] INFO - Initializing ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:33:43 [main] INFO - Starting service [Tomcat]
+2023-10-09 11:33:43 [main] INFO - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-10-09 11:33:43 [main] INFO - Initializing Spring embedded WebApplicationContext
+2023-10-09 11:33:43 [main] INFO - Root WebApplicationContext: initialization completed in 560 ms
+2023-10-09 11:33:43 [Thread-2] INFO - [ WEBSOCKET SERVICE ] ==> START SUCCESSFULLY... BIND ( 9600 )
+2023-10-09 11:33:43 [main] INFO - Adding welcome page: class path resource [static/index.html]
+2023-10-09 11:33:43 [main] INFO - Starting ProtocolHandler ["http-nio-9000"]
+2023-10-09 11:33:43 [main] INFO - Tomcat started on port(s): 9000 (http) with context path ''
+2023-10-09 11:33:43 [main] INFO - Started P6eWebSocketDemoApplication in 1.285 seconds (process running for 1.565)
+2023-10-09 11:33:43 [main] INFO - smart construction application initialization complete ...
+2023-10-09 11:33:47 [http-nio-9000-exec-1] INFO - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-09 11:33:47 [http-nio-9000-exec-1] INFO - Initializing Servlet 'dispatcherServlet'
+2023-10-09 11:33:47 [http-nio-9000-exec-1] INFO - Completed initialization in 0 ms

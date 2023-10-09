@@ -12,7 +12,6 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -27,10 +26,6 @@ import java.util.function.Function;
  * @version 1.0
  */
 @Component
-@ConditionalOnMissingBean(
-        value = WebSocketMain.class,
-        ignored = WebSocketMain.class
-)
 public class WebSocketMain {
 
     /**

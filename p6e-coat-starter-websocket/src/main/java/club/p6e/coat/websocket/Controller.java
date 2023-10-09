@@ -6,7 +6,6 @@ import club.p6e.coat.common.error.ParameterException;
 import club.p6e.coat.common.utils.GeneratorUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Data;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,10 +21,6 @@ import java.util.List;
  */
 @Component
 @RestController
-@ConditionalOnMissingBean(
-        value = Controller.class,
-        ignored = Controller.class
-)
 public class Controller {
 
     @Data
@@ -39,17 +34,17 @@ public class Controller {
     /**
      * 时间格式化对象
      */
-    protected static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
 
     /**
      * 认证对象
      */
-    protected final Auth auth;
+    private final Auth auth;
 
     /**
      * WebSocket Main 对象
      */
-    protected final WebSocketMain webSocketMain;
+    private final WebSocketMain webSocketMain;
 
     /**
      * 构造方法初始化
@@ -77,7 +72,7 @@ public class Controller {
                 || param.getType() == null
                 || param.getContent() == null
                 || param.getUsers() == null
-                || !param.getUsers().isEmpty()) {
+                || param.getUsers().isEmpty()) {
             throw new ParameterException(this.getClass(), "fun push(PushParam param).");
         }
         final String id = DATE_TIME_FORMATTER.format(LocalDateTime.now()) + GeneratorUtil.uuid();

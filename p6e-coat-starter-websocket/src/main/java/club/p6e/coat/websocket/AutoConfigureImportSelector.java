@@ -60,6 +60,12 @@ public class AutoConfigureImportSelector implements ImportSelector {
             if (attributes.get("threadPoolLength") instanceof Integer) {
                 WebSocketMain.THREAD_POOL_LENGTH = Integer.parseInt(String.valueOf(attributes.get("threadPoolLength")));
             }
+            if (WebSocketMain.CONFIGS.size() == 0) {
+                WebSocketMain.CONFIGS.add(new WebSocketMain.Config()
+                        .setName("DEFAULT")
+                        .setPort(9600)
+                );
+            }
         }
         final List<String> register = new ArrayList<>();
         final String pattern = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX

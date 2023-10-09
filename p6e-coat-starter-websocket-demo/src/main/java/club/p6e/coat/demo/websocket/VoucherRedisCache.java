@@ -3,6 +3,8 @@ package club.p6e.coat.demo.websocket;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.time.Duration;
+
 /**
  * @author lidashuang
  * @version 1.0
@@ -26,7 +28,7 @@ public class VoucherRedisCache implements VoucherCache {
 
     @Override
     public void set(String voucher, String content) {
-        template.opsForValue().set(VOUCHER_PREFIX + voucher, content, EXPIRATION_TIME);
+        template.opsForValue().set(VOUCHER_PREFIX + voucher, content, Duration.ofSeconds(EXPIRATION_TIME));
     }
 
     @Override

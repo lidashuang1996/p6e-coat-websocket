@@ -112,10 +112,10 @@ final class Handler implements ChannelInboundHandler {
                 session = new Session(user, name, channelHandlerContext);
                 SessionManager.register(id, session);
                 channelHandlerContext.writeAndFlush(new TextWebSocketFrame(LOGIN_CONTENT));
-                return;
+            } else {
+                channelHandlerContext.close();
             }
         }
-        channelHandlerContext.close();
     }
 
     @Override

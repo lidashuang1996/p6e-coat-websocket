@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @version 1.0
  */
 @Component
-public class CustomAuth extends DefaultAuth implements Auth {
+public class CustomAuth implements Auth {
 
     /**
      * 认证缓存对象
@@ -66,7 +66,7 @@ public class CustomAuth extends DefaultAuth implements Auth {
 
     @Override
     public User validate(String uri) {
-        final String voucher = getVoucher(uri);
+        final String voucher = DefaultAuth.getVoucher(uri);
         if (voucher != null) {
             final String content = voucherCache.get(voucher);
             if (content != null) {

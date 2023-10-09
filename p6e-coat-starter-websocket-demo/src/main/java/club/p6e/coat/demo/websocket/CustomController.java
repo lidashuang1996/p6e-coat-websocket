@@ -3,8 +3,6 @@ package club.p6e.coat.demo.websocket;
 import club.p6e.coat.common.context.ResultContext;
 import club.p6e.coat.common.error.ParameterException;
 import club.p6e.coat.common.utils.GeneratorUtil;
-import club.p6e.coat.websocket.Auth;
-import club.p6e.coat.websocket.Controller;
 import club.p6e.coat.websocket.WebSocketMain;
 import lombok.Data;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -19,7 +18,7 @@ import java.util.List;
  * @version 1.0
  */
 @RestController
-public class CustomController extends Controller {
+public class CustomController {
 
     @Data
     public static class PushParam {
@@ -30,25 +29,36 @@ public class CustomController extends Controller {
     }
 
     /**
+     * 时间格式化对象
+     */
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+
+    /**
+     * WebSocket Main 对象
+     */
+    private final WebSocketMain webSocketMain;
+
+    /**
      * 构造方法初始化
      *
-     * @param auth          认证对象
      * @param webSocketMain WebSocket Main 对象
      */
-    public CustomController(Auth auth, WebSocketMain webSocketMain) {
-        super(auth, webSocketMain);
+    public CustomController(WebSocketMain webSocketMain) {
+        this.webSocketMain = webSocketMain;
     }
 
     @PostMapping("/push/tags")
     public ResultContext pushTags(@RequestBody PushParam param) {
         // 自定义请求内容来实现推送
+        System.out.println(param);
         if (param == null
                 || param.getType() == null
                 || param.getContent() == null
                 || param.getTags() == null
-                || !param.getTags().isEmpty()) {
+                || param.getTags().isEmpty()) {
             throw new ParameterException(this.getClass(), "fun push(PushParam param).");
         }
+        System.out.println(param);
         final String id = DATE_TIME_FORMATTER.format(LocalDateTime.now()) + GeneratorUtil.uuid();
         final String name = param.getName() == null ? "DEFAULT" : param.getName();
         final String type = param.getType();

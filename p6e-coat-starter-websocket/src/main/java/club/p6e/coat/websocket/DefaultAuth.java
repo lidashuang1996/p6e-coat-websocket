@@ -1,7 +1,6 @@
 package club.p6e.coat.websocket;
 
 import club.p6e.coat.common.utils.GeneratorUtil;
-import io.netty.channel.ChannelHandlerContext;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.stereotype.Component;
@@ -39,7 +38,7 @@ public class DefaultAuth implements Auth {
      * @param uri 请求的 URL
      * @return 参数
      */
-    protected Map<String, String> getParams(String uri) {
+    public static Map<String, String> getParams(String uri) {
         final int index = uri.indexOf("?");
         final Map<String, String> result = new HashMap<>();
         if (index > 0) {
@@ -47,8 +46,8 @@ public class DefaultAuth implements Auth {
             final String param = uri.substring(index + 1);
             for (int i = 0; i < param.length(); i++) {
                 final char ch = param.charAt(i);
-                if (ch == '&' || ch == '?') {
-                    final String kv = param.substring(pi, i);
+                if (ch == '&' || ch == '?' || i == param.length() - 1) {
+                    final String kv = param.substring(pi, i + 1);
                     final String[] kvs = kv.split("=");
                     if (kvs.length == 2) {
                         result.put(kvs[0], kvs[1]);
@@ -60,10 +59,9 @@ public class DefaultAuth implements Auth {
         return result;
     }
 
-    protected String getVoucher(String uri) {
+    public static String getVoucher(String uri) {
         final Map<String, String> params = getParams(uri);
-        if (params == null || params.isEmpty()
-                || (params.get("v") == null && params.get("voucher") == null)) {
+        if (params.isEmpty() || params.get("v") == null && params.get("voucher") == null) {
             return null;
         }
         return params.get("v") == null ? params.get("voucher") : params.get("v");
