@@ -25,7 +25,7 @@ final class Heartbeat {
      * 心跳的字节码
      */
     public static final byte[] CONTENT_BYTES = new byte[]{
-            16, 0, 0, 0, 16, 0, 1, 0, 0, 0, 0, 0, 4, 0, 0, 0
+            16, 0, 0, 0, 16, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
     };
 
     /**
