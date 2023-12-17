@@ -4,8 +4,8 @@ import club.p6e.coat.common.controller.BaseWebController;
 import club.p6e.coat.common.error.AuthException;
 import club.p6e.coat.common.utils.GeneratorUtil;
 import club.p6e.coat.common.utils.JsonUtil;
-import club.p6e.coat.websocket.Auth;
-import club.p6e.coat.websocket.DefaultAuth;
+import club.p6e.coat.websocket.AuthService;
+import club.p6e.coat.websocket.DefaultAuthServiceImpl;
 import club.p6e.coat.websocket.User;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @version 1.0
  */
 @Component
-public class CustomAuth implements Auth {
+public class CustomAuth implements AuthService {
 
     /**
      * 认证缓存对象
@@ -66,7 +66,7 @@ public class CustomAuth implements Auth {
 
     @Override
     public User validate(String uri) {
-        final String voucher = DefaultAuth.getVoucher(uri);
+        final String voucher = DefaultAuthServiceImpl.getVoucher(uri);
         if (voucher != null) {
             final String content = voucherCache.get(voucher);
             if (content != null) {

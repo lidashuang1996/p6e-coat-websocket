@@ -9,6 +9,7 @@ import lombok.Data;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -24,7 +25,7 @@ import java.util.List;
 public class Controller {
 
     @Data
-    public static class PushParam {
+    public static class PushParam implements Serializable {
         private String name;
         private String type;
         private String content;
@@ -37,9 +38,9 @@ public class Controller {
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
 
     /**
-     * 认证对象
+     * 认证服务对象
      */
-    private final Auth auth;
+    private final AuthService authService;
 
     /**
      * WebSocket Main 对象
@@ -49,19 +50,23 @@ public class Controller {
     /**
      * 构造方法初始化
      *
-     * @param auth          认证对象
+     * @param authService   认证服务对象
      * @param webSocketMain WebSocket Main 对象
      */
-    public Controller(Auth auth, WebSocketMain webSocketMain) {
-        this.auth = auth;
+    public Controller(AuthService authService, WebSocketMain webSocketMain) {
+        this.authService = authService;
         this.webSocketMain = webSocketMain;
     }
 
     @RequestMapping("/auth")
     public ResultContext auth(HttpServletRequest request) {
-        final String voucher = auth.award(request);
+        final String voucher = authService.award(request);
         if (voucher == null) {
-            throw new AuthException(this.getClass(), "fun push(PushParam param).");
+            throw new AuthException(
+                    this.getClass(),
+                    "fun push(PushParam param).",
+                    "auth error, please check your network request."
+            );
         }
         return ResultContext.build(voucher);
     }
@@ -73,7 +78,11 @@ public class Controller {
                 || param.getContent() == null
                 || param.getUsers() == null
                 || param.getUsers().isEmpty()) {
-            throw new ParameterException(this.getClass(), "fun push(PushParam param).");
+            throw new ParameterException(
+                    this.getClass(),
+                    "fun push(PushParam param).",
+                    "request parameter exception, please check your network request."
+            );
         }
         final String id = DATE_TIME_FORMATTER.format(LocalDateTime.now()) + GeneratorUtil.uuid();
         final String name = param.getName() == null ? "DEFAULT" : param.getName();

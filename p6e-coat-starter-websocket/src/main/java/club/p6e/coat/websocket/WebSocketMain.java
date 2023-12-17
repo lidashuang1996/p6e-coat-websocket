@@ -12,6 +12,8 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEvent;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -51,9 +53,18 @@ public class WebSocketMain {
     }
 
     /**
+     * Web Socket Config Event
+     */
+    public static class ApplicationConfigEvent extends ApplicationEvent {
+        public ApplicationConfigEvent(Object source) {
+            super(source);
+        }
+    }
+
+    /**
      * 启动线程池大小
      */
-    public static int THREAD_POOL_LENGTH = 15;
+    public static int THREAD_POOL_LENGTH = 10;
 
     /**
      * 启动配置信息
@@ -68,15 +79,23 @@ public class WebSocketMain {
     /**
      * 认证对象
      */
-    private final Auth auth;
+    private final AuthService auth;
 
     /**
      * 构造方法初始化
      *
      * @param auth 认证对象
      */
-    public WebSocketMain(Auth auth) {
+    public WebSocketMain(AuthService auth, ApplicationEventPublisher publisher) {
         this.auth = auth;
+        publisher.publishEvent(new ApplicationConfigEvent(this));
+        if (CONFIGS.isEmpty()) {
+            WebSocketMain.CONFIGS.add(new WebSocketMain.Config()
+                    .setPort(9600)
+                    .setType("TEXT")
+                    .setName("DEFAULT")
+            );
+        }
         for (final Config config : CONFIGS) {
             init(config.getPort(), config.getName(), config.getType(), THREAD_POOL_LENGTH);
         }
@@ -127,7 +146,8 @@ public class WebSocketMain {
      * @param type             服务类型
      * @param threadPoolLength 启动的处理消息的线程池大小
      */
-    private static void init(Auth auth, int port, String name, String type, int threadPoolLength) {
+    @SuppressWarnings("ALL")
+    private static void init(AuthService auth, int port, String name, String type, int threadPoolLength) {
         Heartbeat.init();
         SessionManager.init(threadPoolLength);
         new Thread() {
@@ -147,7 +167,7 @@ public class WebSocketMain {
      * @param name 服务名称
      * @param type 服务类型
      */
-    private static void netty(Auth auth, int port, String name, String type) {
+    private static void netty(AuthService auth, int port, String name, String type) {
         final EventLoopGroup boss = new NioEventLoopGroup();
         final EventLoopGroup work = new NioEventLoopGroup();
         try {

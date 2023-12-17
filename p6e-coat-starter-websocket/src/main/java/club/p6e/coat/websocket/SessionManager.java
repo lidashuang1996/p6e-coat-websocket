@@ -4,8 +4,7 @@ import club.p6e.coat.common.utils.JsonUtil;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.function.Function;
 
 /**
@@ -24,7 +23,7 @@ final class SessionManager {
     /**
      * 线程池对象
      */
-    private static ScheduledExecutorService EXECUTOR = null;
+    private static ScheduledThreadPoolExecutor EXECUTOR = null;
 
     /**
      * 会话对象
@@ -43,7 +42,8 @@ final class SessionManager {
      */
     public static void init(int num) {
         CHANNEL_NUM = num;
-        EXECUTOR = Executors.newScheduledThreadPool(num);
+        EXECUTOR = new ScheduledThreadPoolExecutor(num, r ->
+                new Thread(r, "P6E-WS-SESSION-MANAGER-THREAD-" + r.hashCode()));
     }
 
     /**
@@ -56,7 +56,7 @@ final class SessionManager {
         SESSIONS.put(id, session);
         CHANNELS.computeIfAbsent(
                 String.valueOf(id.hashCode() % CHANNEL_NUM),
-                k -> new ConcurrentHashMap<>()
+                k -> new ConcurrentHashMap<>(16)
         ).put(id, session);
     }
 
