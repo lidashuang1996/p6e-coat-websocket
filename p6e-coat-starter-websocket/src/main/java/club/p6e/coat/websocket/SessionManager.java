@@ -41,9 +41,11 @@ final class SessionManager {
      *
      * @param num 频道（线程）数量
      */
-    public static void init(int num) {
-        CHANNEL_NUM = num;
-        EXECUTOR = Executors.newScheduledThreadPool(num);
+    public synchronized static void init(int num) {
+        if (EXECUTOR == null) {
+            CHANNEL_NUM = num;
+            EXECUTOR = Executors.newScheduledThreadPool(num);
+        }
     }
 
     /**

@@ -3,6 +3,7 @@ package club.p6e.coat.demo.websocket;
 import club.p6e.coat.websocket.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author lidashuang
@@ -21,6 +22,11 @@ public class CustomUser implements User {
     @Override
     public String id() {
         return id;
+    }
+
+    @Override
+    public Map<String, Object> toMap() {
+        return null;
     }
 
     public List<String> tags() {

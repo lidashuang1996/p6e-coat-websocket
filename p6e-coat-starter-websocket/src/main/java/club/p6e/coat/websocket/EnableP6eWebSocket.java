@@ -44,6 +44,6 @@ public @interface EnableP6eWebSocket {
      *
      * @return 线程池大小
      */
-    int threadPoolLength() default 10;
+    int threadPoolLength() default 15;
 
 }

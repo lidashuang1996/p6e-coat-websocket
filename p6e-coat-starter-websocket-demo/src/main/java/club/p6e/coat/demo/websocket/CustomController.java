@@ -43,6 +43,7 @@ public class CustomController {
      *
      * @param webSocketMain WebSocket Main 对象
      */
+    @SuppressWarnings("ALL")
     public CustomController(WebSocketMain webSocketMain) {
         this.webSocketMain = webSocketMain;
     }

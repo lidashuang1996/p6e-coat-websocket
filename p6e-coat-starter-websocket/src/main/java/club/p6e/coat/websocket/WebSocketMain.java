@@ -12,6 +12,8 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEvent;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -75,8 +77,16 @@ public class WebSocketMain {
      *
      * @param auth 认证对象
      */
-    public WebSocketMain(Auth auth) {
+    public WebSocketMain(Auth auth, ApplicationEventPublisher publisher) {
         this.auth = auth;
+        publisher.publishEvent(new ApplicationConfigEvent());
+        if (CONFIGS.isEmpty()) {
+            CONFIGS.add(new WebSocketMain.Config()
+                    .setPort(9600)
+                    .setType("TEXT")
+                    .setName("DEFAULT")
+            );
+        }
         for (final Config config : CONFIGS) {
             init(config.getPort(), config.getName(), config.getType(), THREAD_POOL_LENGTH);
         }
@@ -181,6 +191,17 @@ public class WebSocketMain {
             boss.shutdownGracefully();
             work.shutdownGracefully();
         }
+    }
+
+    /**
+     * 配置事件对象
+     */
+    public static class ApplicationConfigEvent extends ApplicationEvent {
+
+        public ApplicationConfigEvent() {
+            super("P6E_COAT_WEBSOCKET_CONFIG_EVENT");
+        }
+
     }
 
 }
