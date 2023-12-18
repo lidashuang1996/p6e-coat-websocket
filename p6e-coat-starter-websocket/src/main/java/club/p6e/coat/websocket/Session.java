@@ -32,7 +32,7 @@ public final class Session {
     /**
      * 时间
      */
-    private long date;
+    private volatile long date;
 
     /**
      * 服务名称

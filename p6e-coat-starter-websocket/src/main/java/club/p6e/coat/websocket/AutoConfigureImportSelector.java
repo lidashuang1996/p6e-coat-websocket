@@ -80,7 +80,7 @@ public class AutoConfigureImportSelector implements ImportSelector {
                 }
             }
         } catch (Exception e) {
-            LOGGER.error("p6e websocket auto configure import selector", e);
+            LOGGER.error("p6e coat websocket auto configure import selector", e);
         }
         return register.toArray(new String[0]);
     }

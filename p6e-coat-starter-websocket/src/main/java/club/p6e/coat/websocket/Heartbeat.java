@@ -4,8 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Iterator;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -38,13 +38,13 @@ final class Heartbeat {
      */
     private static ScheduledExecutorService EXECUTOR = null;
 
-
     /**
      * 初始化
      */
     public synchronized static void init() {
         if (EXECUTOR == null) {
-            EXECUTOR = Executors.newScheduledThreadPool(1);
+            EXECUTOR = new ScheduledThreadPoolExecutor(1, r ->
+                    new Thread(r, "P6E-WS-HEARTBEAT-THREAD-" + r.hashCode()));
             EXECUTOR.schedule(new Task(), INTERVAL, TimeUnit.SECONDS);
         }
     }

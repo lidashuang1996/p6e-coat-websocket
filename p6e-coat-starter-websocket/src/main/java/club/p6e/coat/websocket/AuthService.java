@@ -1,6 +1,5 @@
 package club.p6e.coat.websocket;
 
-import io.netty.channel.ChannelHandlerContext;
 import jakarta.servlet.http.HttpServletRequest;
 
 /**
@@ -9,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
  * @author lidashuang
  * @version 1.0
  */
-public interface Auth {
+public interface AuthService {
 
     /**
      * 颁发令牌
