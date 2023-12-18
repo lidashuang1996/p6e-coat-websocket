@@ -42,7 +42,6 @@ public class AutoConfigureImportSelector implements ImportSelector {
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(AutoConfigureImportSelector.class);
 
-    @SuppressWarnings("ALL")
     @NonNull
     @Override
     public String[] selectImports(@NonNull AnnotationMetadata importingClassMetadata) {
