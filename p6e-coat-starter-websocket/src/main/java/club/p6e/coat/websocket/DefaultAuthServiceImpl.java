@@ -31,19 +31,7 @@ public class DefaultAuthServiceImpl implements AuthService {
     @Override
     public User validate(String uri) {
         final String voucher = getVoucher(uri);
-        return new User() {
-            @Override
-            public String id() {
-                return voucher;
-            }
-
-            @Override
-            public Map<String, Object> toMap() {
-                return new HashMap<>() {{
-                    put("id", id());
-                }};
-            }
-        };
+        return () -> voucher;
     }
 
     /**

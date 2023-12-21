@@ -18,9 +18,4 @@ public interface User extends Serializable {
      */
     public String id();
 
-    /**
-     * MAP
-     */
-    public Map<String, Object> toMap();
-
 }
