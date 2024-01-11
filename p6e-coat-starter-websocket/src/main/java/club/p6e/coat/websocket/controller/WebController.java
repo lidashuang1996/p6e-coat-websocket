@@ -1,46 +1,37 @@
-package club.p6e.coat.websocket;
+package club.p6e.coat.websocket.controller;
 
 import club.p6e.coat.common.context.ResultContext;
+import club.p6e.coat.common.controller.config.WebConditionBean;
 import club.p6e.coat.common.error.AuthException;
 import club.p6e.coat.common.error.ParameterException;
 import club.p6e.coat.common.utils.GeneratorUtil;
+import club.p6e.coat.common.utils.NumberUtil;
+import club.p6e.coat.websocket.WebSocketMain;
+import club.p6e.coat.websocket.auth.AuthWebService;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.Data;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
- * 接口控制器
- *
  * @author lidashuang
  * @version 1.0
  */
 @Component
 @RestController
-public class Controller {
-
-    @Data
-    public static class PushParam implements Serializable {
-        private String name;
-        private String type;
-        private String content;
-        private List<String> users;
-    }
-
-    /**
-     * 时间格式化对象
-     */
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+@ConditionalOnBean(WebConditionBean.class)
+public class WebController extends Controller {
 
     /**
      * 认证服务对象
      */
-    private final AuthService authService;
+    private final AuthWebService authService;
 
     /**
      * WebSocket Main 对象
@@ -53,7 +44,7 @@ public class Controller {
      * @param authService   认证服务对象
      * @param webSocketMain WebSocket Main 对象
      */
-    public Controller(AuthService authService, WebSocketMain webSocketMain) {
+    public WebController(AuthWebService authService, WebSocketMain webSocketMain) {
         this.authService = authService;
         this.webSocketMain = webSocketMain;
     }
@@ -73,6 +64,11 @@ public class Controller {
 
     @PostMapping("/push")
     public ResultContext push(@RequestBody PushParam param) {
+        return pushText(param);
+    }
+
+    @PostMapping("/push/text")
+    public ResultContext pushText(@RequestBody PushParam param) {
         if (param == null
                 || param.getType() == null
                 || param.getContent() == null
@@ -80,7 +76,7 @@ public class Controller {
                 || param.getUsers().isEmpty()) {
             throw new ParameterException(
                     this.getClass(),
-                    "fun push(PushParam param).",
+                    "fun pushText(PushParam param).",
                     "request parameter exception, please check your network request."
             );
         }
@@ -90,6 +86,26 @@ public class Controller {
         final String content = param.getContent();
         final List<String> users = param.getUsers();
         webSocketMain.push(user -> users.contains(user.id()), name, id, type, content);
+        return ResultContext.build(id);
+    }
+
+    @PostMapping("/push/hex")
+    public ResultContext pushHex(@RequestBody PushParam param) {
+        if (param == null
+                || param.getContent() == null
+                || param.getUsers() == null
+                || param.getUsers().isEmpty()) {
+            throw new ParameterException(
+                    this.getClass(),
+                    "fun pushHex(PushParam param).",
+                    "request parameter exception, please check your network request."
+            );
+        }
+        final String id = DATE_TIME_FORMATTER.format(LocalDateTime.now()) + GeneratorUtil.uuid();
+        final String name = param.getName() == null ? "DEFAULT" : param.getName();
+        final String content = param.getContent();
+        final List<String> users = param.getUsers();
+        webSocketMain.push(user -> users.contains(user.id()), name, NumberUtil.hexToBytes(content));
         return ResultContext.build(id);
     }
 

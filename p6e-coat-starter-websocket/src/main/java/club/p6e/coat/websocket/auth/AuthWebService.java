@@ -1,5 +1,6 @@
-package club.p6e.coat.websocket;
+package club.p6e.coat.websocket.auth;
 
+import club.p6e.coat.websocket.User;
 import jakarta.servlet.http.HttpServletRequest;
 
 /**
@@ -8,7 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
  * @author lidashuang
  * @version 1.0
  */
-public interface AuthService {
+public interface AuthWebService {
 
     /**
      * 颁发令牌
@@ -16,14 +17,14 @@ public interface AuthService {
      * @param request 请求对象
      * @return 颁发的令牌
      */
-    public String award(HttpServletRequest request);
+    String award(HttpServletRequest request);
 
     /**
      * 验证令牌
      *
-     * @param uri 请求的 URL
+     * @param voucher 请求的令牌
      * @return 验证的结果
      */
-    public User validate(String uri);
+    User validate(String voucher);
 
 }

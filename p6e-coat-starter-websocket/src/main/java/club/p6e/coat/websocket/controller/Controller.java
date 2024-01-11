@@ -1,38 +1,47 @@
-package club.p6e.coat.websocket;
+package club.p6e.coat.websocket.controller;
 
-import club.p6e.coat.common.utils.GeneratorUtil;
-import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.stereotype.Component;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * 认证（默认）
+ * 接口控制器
  *
  * @author lidashuang
  * @version 1.0
  */
-@Component
-@ConditionalOnMissingBean(
-        value = AuthService.class,
-        ignored = DefaultAuthServiceImpl.class
-)
-public class DefaultAuthServiceImpl implements AuthService {
+public class Controller {
 
-    @Override
-    public String award(HttpServletRequest request) {
-        return GeneratorUtil.uuid();
+    @Data
+    @Accessors(chain = true)
+    public static class PushParam implements Serializable {
+        private String name;
+        private String type;
+        private String content;
+        private List<String> users;
     }
 
-    @Override
-    public User validate(String uri) {
-        final String voucher = getVoucher(uri);
-        return () -> voucher;
-    }
+    /**
+     * 时间格式化对象
+     */
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+
+    /**
+     * 请求参数名称
+     */
+    private static final String V_PARAM_NAME = "v";
+
+    /**
+     * 请求参数名称
+     */
+    private static final String VOUCHER_PARAM_NAME = "voucher";
+
 
     /**
      * 获取 URL 参数
@@ -60,16 +69,6 @@ public class DefaultAuthServiceImpl implements AuthService {
         }
         return result;
     }
-
-    /**
-     * 请求参数名称
-     */
-    private static final String V_PARAM_NAME = "v";
-
-    /**
-     * 请求参数名称
-     */
-    private static final String VOUCHER_PARAM_NAME = "voucher";
 
     /**
      * 获取凭证参数

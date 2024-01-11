@@ -5,7 +5,7 @@ import club.p6e.coat.common.error.AuthException;
 import club.p6e.coat.common.utils.GeneratorUtil;
 import club.p6e.coat.common.utils.JsonUtil;
 import club.p6e.coat.websocket.AuthService;
-import club.p6e.coat.websocket.DefaultAuthServiceImpl;
+import club.p6e.coat.websocket.SimpleAuthServiceImpl;
 import club.p6e.coat.websocket.User;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
@@ -66,7 +66,7 @@ public class CustomAuth implements AuthService {
 
     @Override
     public User validate(String uri) {
-        final String voucher = DefaultAuthServiceImpl.getVoucher(uri);
+        final String voucher = SimpleAuthServiceImpl.getVoucher(uri);
         if (voucher != null) {
             final String content = voucherCache.get(voucher);
             if (content != null) {

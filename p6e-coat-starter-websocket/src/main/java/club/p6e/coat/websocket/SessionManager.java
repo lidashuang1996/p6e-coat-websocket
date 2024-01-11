@@ -18,7 +18,7 @@ final class SessionManager {
     /**
      * 频道（线程）数量
      */
-    private static int CHANNEL_NUM;
+    private static int CHANNEL_NUM = 15;
 
     /**
      * 线程池对象
@@ -40,10 +40,17 @@ final class SessionManager {
      *
      * @param num 频道（线程）数量
      */
-    public static void init(int num) {
-        CHANNEL_NUM = num;
-        EXECUTOR = new ScheduledThreadPoolExecutor(num, r ->
-                new Thread(r, "P6E-WS-SESSION-MANAGER-THREAD-" + r.hashCode()));
+    public synchronized static void init(int num) {
+        num = num < 0 ? 15 : num;
+        if (EXECUTOR != null && CHANNEL_NUM != num) {
+            EXECUTOR.shutdown();
+            EXECUTOR = null;
+        }
+        if (EXECUTOR == null) {
+            EXECUTOR = new ScheduledThreadPoolExecutor(num, r ->
+                    new Thread(r, "P6E-WS-SESSION-MANAGER-THREAD-" + r.hashCode()));
+            CHANNEL_NUM = num;
+        }
     }
 
     /**

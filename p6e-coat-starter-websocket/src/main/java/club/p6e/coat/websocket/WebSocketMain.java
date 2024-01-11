@@ -1,5 +1,6 @@
 package club.p6e.coat.websocket;
 
+import club.p6e.coat.websocket.auth.AuthService;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
@@ -12,13 +13,13 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationEvent;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
 /**
@@ -29,6 +30,15 @@ import java.util.function.Function;
  */
 @Component
 public class WebSocketMain {
+
+    /**
+     * 客户端对象
+     *
+     * @param boss 服务端
+     * @param work 工作端
+     */
+    public record Client(EventLoopGroup boss, EventLoopGroup work) implements Serializable {
+    }
 
     /**
      * 启动配置信息
@@ -53,23 +63,14 @@ public class WebSocketMain {
     }
 
     /**
-     * Web Socket Config Event
-     */
-    public static class ApplicationConfigEvent extends ApplicationEvent {
-        public ApplicationConfigEvent(Object source) {
-            super(source);
-        }
-    }
-
-    /**
      * 启动线程池大小
      */
-    public static int THREAD_POOL_LENGTH = 10;
+    private int threadPoolLength = 15;
 
     /**
-     * 启动配置信息
+     * 客户端对象
      */
-    public static List<Config> CONFIGS = new ArrayList<>();
+    private static final Map<String, Client> CLIENTS = new ConcurrentHashMap<>();
 
     /**
      * 注入日志对象
@@ -82,35 +83,105 @@ public class WebSocketMain {
     private final AuthService auth;
 
     /**
+     * 启动配置信息
+     */
+    private final List<Config> configs = new ArrayList<>();
+
+    /**
      * 构造方法初始化
      *
      * @param auth 认证对象
      */
-    public WebSocketMain(AuthService auth, ApplicationEventPublisher publisher) {
+    public WebSocketMain(AuthService auth) {
         this.auth = auth;
-        publisher.publishEvent(new ApplicationConfigEvent(this));
-        if (CONFIGS.isEmpty()) {
-            WebSocketMain.CONFIGS.add(new WebSocketMain.Config()
+        reset();
+    }
+
+    /**
+     * 重新根据配置文件初始化
+     */
+    public synchronized void reset() {
+        if (configs.isEmpty()) {
+            configs.add(new WebSocketMain.Config()
                     .setPort(9600)
                     .setType("TEXT")
                     .setName("DEFAULT")
             );
         }
-        for (final Config config : CONFIGS) {
-            init(config.getPort(), config.getName(), config.getType(), THREAD_POOL_LENGTH);
+        final List<Config> create = new ArrayList<>();
+        final List<String> remove = new ArrayList<>(CLIENTS.keySet());
+        init(threadPoolLength);
+        for (final Config config : configs) {
+            final String key = config.getName() + ":" + config.getType() + ":" + config.getPort();
+            if (CLIENTS.get(key) == null) {
+                create.add(config);
+            } else {
+                remove.remove(key);
+            }
+        }
+        for (final String key : remove) {
+            try {
+                final Client client = CLIENTS.get(key);
+                if (client != null) {
+                    if (client.boss != null) {
+                        client.boss.shutdownGracefully();
+                    }
+                    if (client.work != null) {
+                        client.work.shutdownGracefully();
+                    }
+                }
+            } catch (Exception e) {
+                // ignore
+            } finally {
+                CLIENTS.remove(key);
+            }
+        }
+        for (final Config config : create) {
+            client(auth, config.getPort(), config.getName(), config.getType(), unused -> {
+                notifyResource();
+                return null;
+            });
+            waitResource();
         }
     }
 
     /**
-     * 初始化方法
+     * 设置配置信息
      *
-     * @param port             端口
-     * @param name             服务名称
-     * @param type             消息类型
+     * @param configs 配置信息
+     */
+    @SuppressWarnings("ALL")
+    public synchronized void setConfig(List<Config> configs) {
+        if (configs != null && !configs.isEmpty()) {
+            this.configs.clear();
+            this.configs.addAll(configs);
+        }
+    }
+
+    /**
+     * 设置线程池大小
+     *
      * @param threadPoolLength 线程池大小
      */
-    public void init(int port, String name, String type, int threadPoolLength) {
-        init(auth, port, name, type, threadPoolLength);
+    @SuppressWarnings("ALL")
+    public synchronized void setThreadPoolLength(int threadPoolLength) {
+        this.threadPoolLength = threadPoolLength;
+    }
+
+    private synchronized void waitResource() {
+        try {
+            wait();
+        } catch (Exception e) {
+            // ignore
+        }
+    }
+
+    private synchronized void notifyResource() {
+        try {
+            notifyAll();
+        } catch (Exception e) {
+            // ignore
+        }
     }
 
     /**
@@ -140,21 +211,29 @@ public class WebSocketMain {
     /**
      * 初始化方法
      *
-     * @param auth             认证对象
-     * @param port             启动的端口
-     * @param name             服务名称
-     * @param type             服务类型
      * @param threadPoolLength 启动的处理消息的线程池大小
      */
-    @SuppressWarnings("ALL")
-    private static void init(AuthService auth, int port, String name, String type, int threadPoolLength) {
+    private static void init(int threadPoolLength) {
         Heartbeat.init();
         SessionManager.init(threadPoolLength);
+    }
+
+    /**
+     * 初始化方法
+     *
+     * @param auth     认证对象
+     * @param port     启动的端口
+     * @param name     服务名称
+     * @param type     服务类型
+     * @param callback 回调函数
+     */
+    @SuppressWarnings("ALL")
+    private static void client(AuthService auth, int port, String name, String type, Function<Void, Void> callback) {
         new Thread() {
             @Override
             public void run() {
                 super.run();
-                netty(auth, port, name, type);
+                netty(auth, port, name, type, callback);
             }
         }.start();
     }
@@ -162,12 +241,18 @@ public class WebSocketMain {
     /**
      * Netty WebSocket 服务启动
      *
-     * @param auth 认证对象
-     * @param port 启动的端口
-     * @param name 服务名称
-     * @param type 服务类型
+     * @param auth     认证对象
+     * @param port     启动的端口
+     * @param name     服务名称
+     * @param type     服务类型
+     * @param callback 回调函数
      */
-    private static void netty(AuthService auth, int port, String name, String type) {
+    private static void netty(AuthService auth, int port, String name, String type, Function<Void, Void> callback) {
+        if (CLIENTS.get(name) != null) {
+            LOGGER.error("[ WEBSOCKET SERVICE ] (" + name + " : "
+                    + type + ") BIND ( " + port + " ) ==> THERE ARE CHANNELS WITH THE SAME NAME.");
+            return;
+        }
         final EventLoopGroup boss = new NioEventLoopGroup();
         final EventLoopGroup work = new NioEventLoopGroup();
         try {
@@ -189,11 +274,20 @@ public class WebSocketMain {
             });
             final Channel channel = bootstrap.bind(port).sync().channel();
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-                boss.shutdownGracefully();
-                work.shutdownGracefully();
+                final Client client = CLIENTS.get(name + ":" + type + ":" + port);
+                if (client != null) {
+                    if (client.boss != null) {
+                        client.boss.shutdownGracefully();
+                    }
+                    if (client.work != null) {
+                        client.work.shutdownGracefully();
+                    }
+                }
             }));
+            CLIENTS.put(name + ":" + type + ":" + port, new Client(boss, work));
             LOGGER.info("[ WEBSOCKET SERVICE ] (" + name + " : "
                     + type + ") ==> START SUCCESSFULLY... BIND ( " + port + " )");
+            callback.apply(null);
             channel.closeFuture().sync();
         } catch (Exception e) {
             LOGGER.error("[ WEBSOCKET SERVICE ]", e);

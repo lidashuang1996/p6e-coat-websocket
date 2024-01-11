@@ -1,6 +1,8 @@
 package club.p6e.coat.websocket;
 
 import club.p6e.coat.common.utils.GeneratorUtil;
+import club.p6e.coat.websocket.auth.AuthService;
+import club.p6e.coat.websocket.controller.Controller;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
@@ -76,7 +78,7 @@ final class Handler implements ChannelInboundHandler {
     /**
      * 构造方法初始化
      *
-     * @param auth 认证对象
+     * @param auth 认证服务
      * @param name 服务名称
      * @param type 服务类型
      */
@@ -148,8 +150,10 @@ final class Handler implements ChannelInboundHandler {
     public void userEventTriggered(ChannelHandlerContext channelHandlerContext, Object o) {
         LOGGER.debug("[ " + id + " ] ==> userEventTriggered, msg: " + o.getClass());
         if (o instanceof final WebSocketServerProtocolHandler.HandshakeComplete complete) {
-            final User user = auth.validate(complete.requestUri());
-            if (user != null) {
+            final User user = auth.validate(Controller.getVoucher(complete.requestUri()));
+            if (user == null) {
+                channelHandlerContext.close();
+            } else {
                 if (Session.Type.TEXT.name().equalsIgnoreCase(type)) {
                     session = new Session(name, Session.Type.TEXT, user, channelHandlerContext);
                     SessionManager.register(id, session);
@@ -160,8 +164,6 @@ final class Handler implements ChannelInboundHandler {
                     channelHandlerContext.writeAndFlush(
                             new BinaryWebSocketFrame(Unpooled.wrappedBuffer(LOGIN_CONTENT_BYTES)));
                 }
-            } else {
-                channelHandlerContext.close();
             }
         }
     }
