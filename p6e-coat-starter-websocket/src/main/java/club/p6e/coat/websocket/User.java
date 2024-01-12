@@ -1,7 +1,6 @@
 package club.p6e.coat.websocket;
 
 import java.io.Serializable;
-import java.util.Map;
 
 /**
  * 用户对象
@@ -16,6 +15,6 @@ public interface User extends Serializable {
      *
      * @return 用户编号
      */
-    public String id();
+    String id();
 
 }

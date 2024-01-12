@@ -1,14 +1,13 @@
 package club.p6e.coat.websocket.controller;
 
 import club.p6e.coat.common.context.ResultContext;
-import club.p6e.coat.common.controller.config.WebFluxConditionBean;
 import club.p6e.coat.common.error.AuthException;
 import club.p6e.coat.common.error.ParameterException;
 import club.p6e.coat.common.utils.GeneratorUtil;
 import club.p6e.coat.common.utils.NumberUtil;
 import club.p6e.coat.websocket.WebSocketMain;
 import club.p6e.coat.websocket.auth.AuthWebFluxService;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +25,7 @@ import java.util.List;
  */
 @Component
 @RestController
-@ConditionalOnBean(WebFluxConditionBean.class)
+@ConditionalOnClass(name = "org.springframework.web.reactive.package-info")
 public class WebFluxController extends Controller {
 
     /**

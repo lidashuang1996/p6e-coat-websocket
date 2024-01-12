@@ -1,10 +1,9 @@
 package club.p6e.coat.websocket.auth;
 
-import club.p6e.coat.common.controller.config.WebConditionBean;
 import club.p6e.coat.common.utils.GeneratorUtil;
 import club.p6e.coat.websocket.User;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +16,7 @@ import org.springframework.stereotype.Component;
         value = AuthWebService.class,
         ignored = SimpleAuthWebServiceImpl.class
 )
-@ConditionalOnBean(WebConditionBean.class)
+@ConditionalOnClass(name = "org.springframework.web.servlet.package-info")
 public class SimpleAuthWebServiceImpl implements AuthWebService {
 
     @Override
