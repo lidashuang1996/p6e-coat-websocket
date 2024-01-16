@@ -94,7 +94,6 @@ public class WebSocketMain {
      */
     public WebSocketMain(AuthService auth) {
         this.auth = auth;
-        reset();
     }
 
     /**
