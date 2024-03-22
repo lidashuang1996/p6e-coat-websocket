@@ -56,11 +56,6 @@ final class Handler implements ChannelInboundHandler {
     private final String id;
 
     /**
-     * 认证对象
-     */
-    private final AuthService auth;
-
-    /**
      * 服务名称
      */
     private final String name;
@@ -69,6 +64,11 @@ final class Handler implements ChannelInboundHandler {
      * 服务类型
      */
     private final String type;
+
+    /**
+     * 认证对象
+     */
+    private final AuthService auth;
 
     /**
      * 会话对象
@@ -84,9 +84,9 @@ final class Handler implements ChannelInboundHandler {
      */
     public Handler(AuthService auth, String name, String type) {
         this.id = GeneratorUtil.uuid() + GeneratorUtil.random();
-        this.auth = auth;
         this.name = name;
         this.type = type;
+        this.auth = auth;
     }
 
     @Override
