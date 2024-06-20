@@ -42,7 +42,6 @@ public class Controller {
      */
     private static final String VOUCHER_PARAM_NAME = "voucher";
 
-
     /**
      * 获取 URL 参数
      *

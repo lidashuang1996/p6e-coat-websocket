@@ -1,6 +1,5 @@
 package club.p6e.coat.websocket;
 
-import club.p6e.coat.websocket.auth.AuthService;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
@@ -99,6 +98,7 @@ public class WebSocketMain {
     /**
      * 重新根据配置文件初始化
      */
+    @SuppressWarnings("ALL")
     public synchronized void reset() {
         if (configs.isEmpty()) {
             configs.add(new WebSocketMain.Config()
@@ -248,8 +248,7 @@ public class WebSocketMain {
      */
     private static void netty(AuthService auth, int port, String name, String type, Function<Void, Void> callback) {
         if (CLIENTS.get(name) != null) {
-            LOGGER.error("[ WEBSOCKET SERVICE ] (" + name + " : "
-                    + type + ") BIND ( " + port + " ) ==> THERE ARE CHANNELS WITH THE SAME NAME.");
+            LOGGER.error("[ WEBSOCKET SERVICE ] ({} : {}) BIND ( {} ) ==> THERE ARE CHANNELS WITH THE SAME NAME.", name, type, port);
             return;
         }
         final EventLoopGroup boss = new NioEventLoopGroup();
@@ -284,8 +283,7 @@ public class WebSocketMain {
                 }
             }));
             CLIENTS.put(name + ":" + type + ":" + port, new Client(boss, work));
-            LOGGER.info("[ WEBSOCKET SERVICE ] (" + name + " : "
-                    + type + ") ==> START SUCCESSFULLY... BIND ( " + port + " )");
+            LOGGER.info("[ WEBSOCKET SERVICE ] ({} : {}) ==> START SUCCESSFULLY... BIND ( {} )", name, type, port);
             callback.apply(null);
             channel.closeFuture().sync();
         } catch (Exception e) {

@@ -1,6 +1,4 @@
-club.p6e.coat.websocket.auth.AuthService
-club.p6e.coat.websocket.auth.SimpleAuthWebServiceImpl
-club.p6e.coat.websocket.auth.SimpleAuthWebFluxServiceImpl
 club.p6e.coat.websocket.controller.WebController
 club.p6e.coat.websocket.controller.WebFluxController
 club.p6e.coat.websocket.WebSocketMain
+club.p6e.coat.websocket.AuthServiceImpl

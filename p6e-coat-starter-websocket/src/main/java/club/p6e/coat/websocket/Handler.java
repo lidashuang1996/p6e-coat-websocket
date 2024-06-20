@@ -1,7 +1,6 @@
 package club.p6e.coat.websocket;
 
 import club.p6e.coat.common.utils.GeneratorUtil;
-import club.p6e.coat.websocket.auth.AuthService;
 import club.p6e.coat.websocket.controller.Controller;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -91,27 +90,27 @@ final class Handler implements ChannelInboundHandler {
 
     @Override
     public void channelRegistered(ChannelHandlerContext channelHandlerContext) {
-        LOGGER.debug("[ " + id + " ] ==> channelRegistered");
+        LOGGER.debug("[ {} ] ==> channelRegistered", id);
     }
 
     @Override
     public void channelUnregistered(ChannelHandlerContext channelHandlerContext) {
-        LOGGER.debug("[ " + id + " ] ==> channelUnregistered");
+        LOGGER.debug("[ {} ] ==> channelUnregistered", id);
     }
 
     @Override
     public void channelActive(ChannelHandlerContext channelHandlerContext) {
-        LOGGER.debug("[ " + id + " ] ==> channelActive");
+        LOGGER.debug("[ {} ] ==> channelActive", id);
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext channelHandlerContext) {
-        LOGGER.debug("[ " + id + " ] ==> channelInactive");
+        LOGGER.debug("[ {} ] ==> channelInactive", id);
     }
 
     @Override
     public void channelRead(ChannelHandlerContext channelHandlerContext, Object o) {
-        LOGGER.debug("[ " + id + " ] ==> channelRead, msg: " + o.getClass());
+        LOGGER.debug("[ {} ] ==> channelRead, msg: {}", id, o.getClass());
         if (o instanceof final TextWebSocketFrame textWebSocketFrame) {
             final String text = textWebSocketFrame.text();
             if (session != null && Heartbeat.CONTENT_TEXT.equalsIgnoreCase(text)) {
@@ -143,12 +142,12 @@ final class Handler implements ChannelInboundHandler {
 
     @Override
     public void channelReadComplete(ChannelHandlerContext channelHandlerContext) {
-        LOGGER.debug("[ " + id + " ] ==> channelReadComplete");
+        LOGGER.debug("[ {} ] ==> channelReadComplete", id);
     }
 
     @Override
     public void userEventTriggered(ChannelHandlerContext channelHandlerContext, Object o) {
-        LOGGER.debug("[ " + id + " ] ==> userEventTriggered, msg: " + o.getClass());
+        LOGGER.debug("[ {} ] ==> userEventTriggered, msg: {}", id, o.getClass());
         if (o instanceof final WebSocketServerProtocolHandler.HandshakeComplete complete) {
             final User user = auth.validate(Controller.getVoucher(complete.requestUri()));
             if (user == null) {
@@ -170,17 +169,17 @@ final class Handler implements ChannelInboundHandler {
 
     @Override
     public void channelWritabilityChanged(ChannelHandlerContext channelHandlerContext) {
-        LOGGER.debug("[ " + id + " ] ==> channelWritabilityChanged");
+        LOGGER.debug("[ {} ] ==> channelWritabilityChanged", id);
     }
 
     @Override
     public void handlerAdded(ChannelHandlerContext channelHandlerContext) {
-        LOGGER.debug("[ " + id + " ] ==> handlerAdded");
+        LOGGER.debug("[ {} ] ==> handlerAdded", id);
     }
 
     @Override
     public void handlerRemoved(ChannelHandlerContext channelHandlerContext) {
-        LOGGER.debug("[ " + id + " ] ==> handlerRemoved");
+        LOGGER.debug("[ {} ] ==> handlerRemoved", id);
         SessionManager.unregister(id);
         if (Session.Type.TEXT.name().equalsIgnoreCase(type)) {
             channelHandlerContext.writeAndFlush(new TextWebSocketFrame(LOGOUT_CONTENT_TEXT));
@@ -192,7 +191,7 @@ final class Handler implements ChannelInboundHandler {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext channelHandlerContext, Throwable throwable) {
-        LOGGER.error("[ " + id + " ] ==> exceptionCaught " + throwable.getMessage());
+        LOGGER.error("[ {} ] ==> exceptionCaught {}", id, throwable.getMessage());
         channelHandlerContext.close();
     }
 

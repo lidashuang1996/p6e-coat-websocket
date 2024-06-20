@@ -1,24 +1,22 @@
 package club.p6e.coat.websocket.controller;
 
 import club.p6e.coat.common.context.ResultContext;
-import club.p6e.coat.common.error.AuthException;
 import club.p6e.coat.common.error.ParameterException;
 import club.p6e.coat.common.utils.GeneratorUtil;
 import club.p6e.coat.common.utils.NumberUtil;
 import club.p6e.coat.websocket.WebSocketMain;
-import club.p6e.coat.websocket.auth.AuthWebService;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 /**
+ * WEB CONTROLLER
+ *
  * @author lidashuang
  * @version 1.0
  */
@@ -28,11 +26,6 @@ import java.util.List;
 public class WebController extends Controller {
 
     /**
-     * 认证服务对象
-     */
-    private final AuthWebService authService;
-
-    /**
      * WebSocket Main 对象
      */
     private final WebSocketMain webSocketMain;
@@ -40,25 +33,10 @@ public class WebController extends Controller {
     /**
      * 构造方法初始化
      *
-     * @param authService   认证服务对象
      * @param webSocketMain WebSocket Main 对象
      */
-    public WebController(AuthWebService authService, WebSocketMain webSocketMain) {
-        this.authService = authService;
+    public WebController(WebSocketMain webSocketMain) {
         this.webSocketMain = webSocketMain;
-    }
-
-    @RequestMapping("/auth")
-    public ResultContext auth(HttpServletRequest request) {
-        final String voucher = authService.award(request);
-        if (voucher == null) {
-            throw new AuthException(
-                    this.getClass(),
-                    "fun push(PushParam param).",
-                    "auth error, please check your network request."
-            );
-        }
-        return ResultContext.build(voucher);
     }
 
     @PostMapping("/push")

@@ -87,6 +87,7 @@ final class SessionManager {
      * @param id 会话编号
      * @return 会话对象
      */
+    @SuppressWarnings("ALL")
     public static Session get(String id) {
         return SESSIONS.get(id);
     }

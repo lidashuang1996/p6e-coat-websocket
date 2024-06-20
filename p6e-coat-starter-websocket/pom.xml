@@ -15,20 +15,42 @@
     <description>p6e-coat-starter-websocket</description>
 
     <dependencies>
+
+        <!-- Spring Web [ START ] -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <!-- scope provided dependency -->
+            <scope>provided</scope>
+        </dependency>
+        <!-- Spring Web [ END ] -->
+
+        <!-- Spring Web Flux [ START ] -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+            <!-- scope provided dependency -->
+            <scope>provided</scope>
+        </dependency>
+        <!-- Spring Web Flux [ END ] -->
+
+        <!-- Netty All [ START ] -->
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
+            <!-- scope provided dependency -->
+            <scope>provided</scope>
         </dependency>
+        <!-- Netty All [ END ] -->
 
+        <!-- P6e Coat Common [ START ] -->
         <dependency>
             <groupId>club.p6e.coat</groupId>
             <artifactId>p6e-coat-starter-common</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-data-jpa</artifactId>
-                </exclusion>
-            </exclusions>
+            <!-- scope provided dependency -->
+            <scope>provided</scope>
         </dependency>
+        <!-- P6e Coat Common [ END ] -->
+
     </dependencies>
 </project>
