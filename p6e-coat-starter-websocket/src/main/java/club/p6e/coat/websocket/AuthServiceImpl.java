@@ -22,16 +22,16 @@ public class AuthServiceImpl implements AuthService {
             if (voucher != null && !voucher.isEmpty()) {
                 final String[] data = voucher.split("\\.");
                 if (data.length == 2) {
-                    final String base64 = data[0];
+                    final String paramContent = data[0];
                     final String paramSignature = data[1];
                     final String currentSignature = AesUtil.decryption(
-                            Md5Util.execute(base64), AesUtil.stringToKey(getSecretData()));
+                            Md5Util.execute(paramContent), AesUtil.stringToKey(getSecretData()));
                     if (currentSignature.equals(paramSignature)) {
-                        final int index = base64.lastIndexOf("@");
+                        final int index = paramContent.lastIndexOf("@");
                         if (index > 0) {
-                            final String timestamp = base64.substring(index);
+                            final String timestamp = paramContent.substring(index);
                             if (Long.parseLong(timestamp) + 900 > (System.currentTimeMillis() / 1000)) {
-                                return getUserData(base64.substring(0, index));
+                                return getUserData(paramContent.substring(0, index));
                             }
                         }
                     }
