@@ -29,7 +29,7 @@ public class AuthServiceImpl implements AuthService {
                     if (currentSignature.equals(paramSignature)) {
                         final int index = paramContent.lastIndexOf("@");
                         if (index > 0) {
-                            final String timestamp = paramContent.substring(index);
+                            final String timestamp = paramContent.substring((index + 1));
                             if (Long.parseLong(timestamp) + 900 > (System.currentTimeMillis() / 1000)) {
                                 return getUserData(paramContent.substring(0, index));
                             }
