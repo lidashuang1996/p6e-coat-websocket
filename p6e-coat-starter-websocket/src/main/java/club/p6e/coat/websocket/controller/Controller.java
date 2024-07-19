@@ -4,11 +4,10 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 接口控制器
@@ -57,10 +56,10 @@ public class Controller {
             for (int i = 0; i < param.length(); i++) {
                 final char ch = param.charAt(i);
                 if (ch == '&' || ch == '?' || i == param.length() - 1) {
-                    final String kv = param.substring(pi, i + 1);
+                    final String kv = param.substring(pi, i == param.length() - 1 ? i + 1 : i);
                     final String[] kvs = kv.split("=");
                     if (kvs.length == 2) {
-                        result.computeIfAbsent(kvs[0], k -> new ArrayList<>()).add(kvs[1]);
+                        result.computeIfAbsent(kvs[0], k -> new ArrayList<>()).add(URLDecoder.decode(kvs[1], StandardCharsets.UTF_8));
                     }
                     pi = i + 1;
                 }

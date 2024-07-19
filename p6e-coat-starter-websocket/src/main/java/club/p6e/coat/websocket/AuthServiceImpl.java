@@ -2,7 +2,6 @@ package club.p6e.coat.websocket;
 
 import club.p6e.coat.common.utils.AesUtil;
 import club.p6e.coat.common.utils.JsonUtil;
-import club.p6e.coat.common.utils.Md5Util;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -20,20 +19,12 @@ public class AuthServiceImpl implements AuthService {
     public User validate(String voucher) {
         try {
             if (voucher != null && !voucher.isEmpty()) {
-                final String[] data = voucher.split("\\.");
-                if (data.length == 2) {
-                    final String paramContent = data[0];
-                    final String paramSignature = data[1];
-                    final String currentSignature = AesUtil.decryption(
-                            Md5Util.execute(paramContent), AesUtil.stringToKey(getSecretData()));
-                    if (currentSignature.equals(paramSignature)) {
-                        final int index = paramContent.lastIndexOf("@");
-                        if (index > 0) {
-                            final String timestamp = paramContent.substring((index + 1));
-                            if (Long.parseLong(timestamp) + 900 > (System.currentTimeMillis() / 1000)) {
-                                return getUserData(paramContent.substring(0, index));
-                            }
-                        }
+                final String content = AesUtil.decryption(voucher, AesUtil.stringToKey(getSecretData()));
+                final int index = content.lastIndexOf("@");
+                if (index > 0) {
+                    final String timestamp = content.substring((index + 1));
+                    if ((Long.parseLong(timestamp) + 15) > (System.currentTimeMillis() / 1000L)) {
+                        return getUserData(content.substring(0, index));
                     }
                 }
             }
