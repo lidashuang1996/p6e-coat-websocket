@@ -30,16 +30,6 @@ public final class Session {
     }
 
     /**
-     * 时间
-     */
-    private volatile long date;
-
-    /**
-     * 服务名称
-     */
-    private final String name;
-
-    /**
      * 消息类型
      */
     private final Type type;
@@ -50,9 +40,19 @@ public final class Session {
     private final User user;
 
     /**
+     * 服务名称
+     */
+    private final String name;
+
+    /**
      * 上下文对象
      */
     private final ChannelHandlerContext context;
+
+    /**
+     * 时间
+     */
+    private volatile long date;
 
     /**
      * 构造方法初始化

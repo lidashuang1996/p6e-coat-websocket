@@ -31,7 +31,7 @@ final class Heartbeat {
     /**
      * 轮训间隔时间
      */
-    private static final long INTERVAL = 60;
+    private static final long INTERVAL = 50;
 
     /**
      * 心跳的线程

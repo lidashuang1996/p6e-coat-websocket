@@ -149,7 +149,7 @@ final class Handler implements ChannelInboundHandler {
     public void userEventTriggered(ChannelHandlerContext channelHandlerContext, Object o) {
         LOGGER.debug("[ {} ] ==> userEventTriggered, msg: {}", id, o.getClass());
         if (o instanceof final WebSocketServerProtocolHandler.HandshakeComplete complete) {
-            final User user = auth.validate(Controller.getVoucher(complete.requestUri()));
+            final User user = auth.validate(name, Controller.getVoucher(complete.requestUri()));
             if (user == null) {
                 channelHandlerContext.close();
             } else {
