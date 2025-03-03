@@ -87,6 +87,7 @@ public final class SessionManager {
      * @param id 会话编号
      * @return 会话对象
      */
+    @SuppressWarnings("ALL")
     public static Session get(String id) {
         return SESSIONS.get(id);
     }
@@ -103,23 +104,22 @@ public final class SessionManager {
     /**
      * 推送消息
      *
-     * @param filter  过滤器
-     * @param name    服务名称
-     * @param id      消息编号
-     * @param type    消息类型
-     * @param content 消息内容
+     * @param filter 过滤器
+     * @param name   服务名称
+     * @param id     消息编号
+     * @param type   消息类型
+     * @param data   消息内容
      */
-    public static void push(Function<User, Boolean> filter, String name, String id, String type, String content) {
+    public static void push(Function<User, Boolean> filter, String name, String id, String type, String data) {
         final List<List<Session>> list = new ArrayList<>();
         GROUPS.forEach((k, v) -> list.add(new ArrayList<>(v.values())));
-        final Map<String, String> data = new HashMap<>();
-        data.put("id", id);
-        data.put("type", type);
-        data.put("content", content);
-        final String wc = JsonUtil.toJson(data);
         for (final List<Session> sessions : list) {
             if (sessions != null && !sessions.isEmpty()) {
-                submit(sessions, filter, name, wc);
+                submit(sessions, filter, name, id, JsonUtil.toJson(new HashMap<>() {{
+                    put("id", id);
+                    put("type", type);
+                    put("data", data);
+                }}));
             }
         }
     }
@@ -130,15 +130,16 @@ public final class SessionManager {
      * @param channels 频道对象
      * @param filter   过滤器对象
      * @param name     服务名称
-     * @param content  消息内容
+     * @param id       消息编号
+     * @param data     消息内容
      */
-    private static void submit(List<Session> channels, Function<User, Boolean> filter, String name, String content) {
+    private static void submit(List<Session> channels, Function<User, Boolean> filter, String name, String id, String data) {
         EXECUTOR.submit(() -> {
             for (final Session session : channels) {
                 if (name.equalsIgnoreCase(session.getName())) {
                     final Boolean result = filter.apply(session.getUser());
                     if (result != null && result) {
-                        session.push(content);
+                        session.push(id, data);
                     }
                 }
             }

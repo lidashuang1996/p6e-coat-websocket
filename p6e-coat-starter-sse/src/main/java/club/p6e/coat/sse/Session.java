@@ -1,10 +1,17 @@
 package club.p6e.coat.sse;
 
-import io.netty.buffer.Unpooled;
+import club.p6e.coat.common.utils.GeneratorUtil;
+import club.p6e.coat.common.utils.JsonUtil;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.handler.codec.http.DefaultFullHttpResponse;
+import io.netty.handler.codec.http.HttpResponseStatus;
+import io.netty.handler.codec.http.HttpVersion;
 import lombok.Getter;
 
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 
 /**
  * 会话
@@ -14,6 +21,11 @@ import java.nio.charset.StandardCharsets;
  */
 @Getter
 public final class Session {
+
+    /**
+     * 时间格式化对象
+     */
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
 
     /**
      * 用户对象
@@ -53,7 +65,10 @@ public final class Session {
      * 刷新
      */
     public void refresh() {
-        push("{\"type\":\"heartbeat \"}");
+        push(null, JsonUtil.toJson(new HashMap<>() {{
+            put("type", "heartbeat");
+            put("data", String.valueOf(System.currentTimeMillis()));
+        }}));
         this.date = System.currentTimeMillis();
     }
 
@@ -72,9 +87,19 @@ public final class Session {
      *
      * @param data 消息内容
      */
-    public void push(String data) {
+    public void push(String id, String data) {
+        if (id == null) {
+            id = DATE_TIME_FORMATTER.format(LocalDateTime.now()) + GeneratorUtil.uuid();
+        }
+        final String content = "id: " + id + "\ntype: message" + "\ndata: " + data + "\n\n";
         if (context != null && context.channel().isOpen()) {
-            context.channel().write(Unpooled.copiedBuffer(data, StandardCharsets.UTF_8));
+            context.channel().writeAndFlush(
+                    new DefaultFullHttpResponse(
+                            HttpVersion.HTTP_1_1,
+                            HttpResponseStatus.OK,
+                            context.alloc().buffer().writeBytes(content.getBytes(StandardCharsets.UTF_8))
+                    )
+            );
         }
     }
 

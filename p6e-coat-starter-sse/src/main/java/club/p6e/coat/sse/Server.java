@@ -40,7 +40,10 @@ public final class Server {
     private final EventLoopGroup workerGroup = new NioEventLoopGroup();
 
     @Getter
-    private int port = 37100;
+    private Integer port = 37100;
+
+    @Getter
+    private Integer threadPoolLength = 15;
 
     @Getter
     private ChannelFuture channelFuture;
@@ -50,12 +53,14 @@ public final class Server {
      */
     public void run() {
         synchronized (this) {
-            if (channelFuture != null) {
+            if (this.channelFuture != null) {
                 this.channelFuture.channel().close();
                 this.channelFuture = null;
             }
+            Heartbeat.init();
+            SessionManager.init(this.threadPoolLength);
             final ServerBootstrap bootstrap = new ServerBootstrap();
-            bootstrap.group(bossGroup, workerGroup)
+            bootstrap.group(this.bossGroup, this.workerGroup)
                     .channel(NioServerSocketChannel.class)
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
@@ -90,6 +95,17 @@ public final class Server {
         if (channels != null && !channels.isEmpty()) {
             this.handler.setChannels(channels);
         }
+    }
+
+    /**
+     * 设置线程池长度
+     *
+     * @param threadPoolLength 线程池长度
+     */
+    @SuppressWarnings("ALL")
+    public synchronized void setThreadPoolLength(Integer threadPoolLength) {
+        this.threadPoolLength = threadPoolLength;
+        SessionManager.init(this.threadPoolLength);
     }
 
     /**

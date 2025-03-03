@@ -5,7 +5,7 @@ import club.p6e.coat.common.utils.GeneratorUtil;
 import club.p6e.coat.common.utils.JsonUtil;
 import club.p6e.coat.common.utils.SpringUtil;
 import club.p6e.coat.sse.controller.Controller;
-import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandler;
 import io.netty.handler.codec.http.*;
@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * 处理器
@@ -81,39 +80,46 @@ final class Handler implements ChannelInboundHandler {
     public void channelRead(ChannelHandlerContext context, Object o) {
         LOGGER.debug("[ {} ] ==> channelRead, msg: {}", id, o.getClass());
         if (o instanceof FullHttpRequest request) {
-            if (HttpUtil.is100ContinueExpected(request)) {
-                context.write(new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.CONTINUE));
-            }
-            final String path = Controller.getPath(request.uri()).replaceAll("/", ".");
-            System.out.println("11111 >> " + Controller.getPath(request.uri()));
-            System.out.println("11111 >> " + Controller.getVoucher(request.uri()));
-            final AuthService auth = SpringUtil.getBean(AuthService.class);
-            final User user = auth.validate(path, Controller.getVoucher(request.uri()));
-            if (!channels.contains(path) || user == null) {
-                final HttpResponse response = new DefaultHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
-                response.headers().set(HttpHeaderNames.CONTENT_TYPE, "application/json; charset=utf-8");
-                context.write(response);
-                if (user == null) {
-                    context.write(Unpooled.copiedBuffer(JsonUtil.toJson(
-                            ResultContext.build(500, "AUTH_ERROR", "AUTH_ERROR")
-                    ).getBytes(StandardCharsets.UTF_8)));
-                } else {
-                    context.write(Unpooled.copiedBuffer(JsonUtil.toJson(
-                            ResultContext.build(500, "CHANNEL_ERROR", "CHANNEL_ERROR")
-                    ).getBytes(StandardCharsets.UTF_8)));
-                }
-                context.flush();
+            final FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
+            final String origin = request.headers().get(HttpHeaderNames.ORIGIN);
+            response.headers().set(HttpHeaderNames.ACCESS_CONTROL_ALLOW_ORIGIN, origin == null ? "*" : origin);
+            response.headers().set(HttpHeaderNames.ACCESS_CONTROL_ALLOW_METHODS, "GET,POST,DELETE,PUT,OPTIONS");
+            response.headers().set(HttpHeaderNames.ACCESS_CONTROL_ALLOW_HEADERS, "Content-Type");
+            response.headers().set(HttpHeaderNames.ACCESS_CONTROL_MAX_AGE, "3600");
+            if (HttpMethod.OPTIONS.equals(request.method())) {
+                context.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
                 context.close();
-                return;
+            } else {
+                if (HttpUtil.is100ContinueExpected(request)) {
+                    context.write(new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.CONTINUE));
+                }
+                final String path = Controller.getPath(request.uri()).replaceAll("/", ".");
+                final String[] pathSplitContent = (path.startsWith(".") ? path.substring(1) : path).split("/");
+                final String name = String.join(".", pathSplitContent);
+                final AuthService auth = SpringUtil.getBean(AuthService.class);
+                final User user = auth.validate(name, Controller.getVoucher(request.uri()));
+                if (!channels.contains(name) || user == null) {
+                    if (user == null) {
+                        response.content().writeBytes(context.alloc().buffer().writeBytes(JsonUtil.toJson(
+                                ResultContext.build(500, "AUTH_ERROR", "AUTH_ERROR")
+                        ).getBytes(StandardCharsets.UTF_8)));
+                    } else {
+                        response.content().writeBytes(context.alloc().buffer().writeBytes(JsonUtil.toJson(
+                                ResultContext.build(500, "CHANNEL_ERROR", "CHANNEL_ERROR")
+                        ).getBytes(StandardCharsets.UTF_8)));
+                    }
+                    context.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+                    context.close();
+                    return;
+                }
+                response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
+                response.headers().set(HttpHeaderNames.CACHE_CONTROL, HttpHeaderValues.NO_CACHE);
+                response.headers().set(HttpHeaderNames.CONTENT_TYPE, HttpHeaderValues.TEXT_EVENT_STREAM);
+                final Session session = new Session(name, user, context);
+                SessionManager.register(context.channel().id().toString(), session);
+                context.writeAndFlush(response);
+                session.refresh();
             }
-            final Session session = new Session(path, user, context);
-            final HttpResponse response = new DefaultHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
-            response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/event-stream; charset=utf-8");
-            response.headers().set(HttpHeaderNames.CACHE_CONTROL, "no-cache");
-            response.headers().set(HttpHeaderNames.CONNECTION, "keep-alive");
-            SessionManager.register(context.name(), session);
-            context.write(response);
-            context.executor().scheduleAtFixedRate(session::refresh, 0, 50, TimeUnit.SECONDS);
         }
     }
 
@@ -140,7 +146,10 @@ final class Handler implements ChannelInboundHandler {
     @Override
     public void handlerRemoved(ChannelHandlerContext context) {
         LOGGER.debug("[ {} ] ==> handlerRemoved", id);
-        SessionManager.unregister(context.name());
+        SessionManager.unregister(context.channel().id().toString());
+        if (context.channel().isActive()) {
+            context.channel().close();
+        }
     }
 
     @Override
