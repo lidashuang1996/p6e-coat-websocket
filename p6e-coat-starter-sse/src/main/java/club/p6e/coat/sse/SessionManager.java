@@ -104,13 +104,13 @@ public final class SessionManager {
     /**
      * 推送消息
      *
-     * @param filter 过滤器
-     * @param name   服务名称
-     * @param id     消息编号
-     * @param type   消息类型
-     * @param data   消息内容
+     * @param filter  过滤器
+     * @param name    服务名称
+     * @param id      消息编号
+     * @param type    消息类型
+     * @param content 消息内容
      */
-    public static void push(Function<User, Boolean> filter, String name, String id, String type, String data) {
+    public static void push(Function<User, Boolean> filter, String name, String id, String type, String content) {
         final List<List<Session>> list = new ArrayList<>();
         GROUPS.forEach((k, v) -> list.add(new ArrayList<>(v.values())));
         for (final List<Session> sessions : list) {
@@ -118,7 +118,7 @@ public final class SessionManager {
                 submit(sessions, filter, name, id, JsonUtil.toJson(new HashMap<>() {{
                     put("id", id);
                     put("type", type);
-                    put("data", data);
+                    put("content", content);
                 }}));
             }
         }
@@ -131,15 +131,15 @@ public final class SessionManager {
      * @param filter   过滤器对象
      * @param name     服务名称
      * @param id       消息编号
-     * @param data     消息内容
+     * @param content  消息内容
      */
-    private static void submit(List<Session> channels, Function<User, Boolean> filter, String name, String id, String data) {
+    private static void submit(List<Session> channels, Function<User, Boolean> filter, String name, String id, String content) {
         EXECUTOR.submit(() -> {
             for (final Session session : channels) {
                 if (name.equalsIgnoreCase(session.getName())) {
                     final Boolean result = filter.apply(session.getUser());
                     if (result != null && result) {
-                        session.push(id, data);
+                        session.push(id, content);
                     }
                 }
             }

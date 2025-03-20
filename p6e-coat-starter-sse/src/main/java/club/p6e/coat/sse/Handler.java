@@ -78,7 +78,7 @@ final class Handler implements ChannelInboundHandler {
 
     @Override
     public void channelRead(ChannelHandlerContext context, Object o) {
-        LOGGER.debug("[ {} ] ==> channelRead, msg: {}", id, o.getClass());
+        LOGGER.info("[ {} ] ==> channelRead, msg: {}", id, o.getClass());
         if (o instanceof FullHttpRequest request) {
             final FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
             final String origin = request.headers().get(HttpHeaderNames.ORIGIN);
@@ -88,7 +88,6 @@ final class Handler implements ChannelInboundHandler {
             response.headers().set(HttpHeaderNames.ACCESS_CONTROL_MAX_AGE, "3600");
             if (HttpMethod.OPTIONS.equals(request.method())) {
                 context.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
-                context.close();
             } else {
                 if (HttpUtil.is100ContinueExpected(request)) {
                     context.write(new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.CONTINUE));
@@ -117,8 +116,11 @@ final class Handler implements ChannelInboundHandler {
                 response.headers().set(HttpHeaderNames.CONTENT_TYPE, HttpHeaderValues.TEXT_EVENT_STREAM);
                 final Session session = new Session(name, user, context);
                 SessionManager.register(context.channel().id().toString(), session);
-                context.writeAndFlush(response);
-                session.refresh();
+                context.writeAndFlush(response).addListener((ChannelFutureListener) cf -> {
+                    if (cf.isSuccess()) {
+                        session.refresh();
+                    }
+                });
             }
         }
     }
@@ -145,7 +147,7 @@ final class Handler implements ChannelInboundHandler {
 
     @Override
     public void handlerRemoved(ChannelHandlerContext context) {
-        LOGGER.debug("[ {} ] ==> handlerRemoved", id);
+        LOGGER.info("[ {} ] ==> handlerRemoved", id);
         SessionManager.unregister(context.channel().id().toString());
         if (context.channel().isActive()) {
             context.channel().close();

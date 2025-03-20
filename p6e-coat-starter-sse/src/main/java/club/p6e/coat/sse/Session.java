@@ -65,11 +65,11 @@ public final class Session {
      * 刷新
      */
     public void refresh() {
+        this.date = System.currentTimeMillis();
         push(null, JsonUtil.toJson(new HashMap<>() {{
             put("type", "heartbeat");
-            put("data", String.valueOf(System.currentTimeMillis()));
+            put("content", String.valueOf(System.currentTimeMillis()));
         }}));
-        this.date = System.currentTimeMillis();
     }
 
     /**
