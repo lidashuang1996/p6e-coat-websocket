@@ -213,7 +213,7 @@ public class WebSocketMain {
      * @param threadPoolLength 启动的处理消息的线程池大小
      */
     private static void init(int threadPoolLength) {
-        Heartbeat.init();
+        // Heartbeat.init();
         SessionManager.init(threadPoolLength);
     }
 

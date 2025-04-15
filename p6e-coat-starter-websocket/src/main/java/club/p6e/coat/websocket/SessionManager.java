@@ -1,6 +1,8 @@
 package club.p6e.coat.websocket;
 
 import club.p6e.coat.common.utils.JsonUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -15,25 +17,23 @@ import java.util.function.Function;
  */
 final class SessionManager {
 
-    /**
-     * 频道（线程）数量
-     */
-    private static int CHANNEL_NUM = 15;
-
-    /**
-     * 线程池对象
-     */
-    private static ScheduledThreadPoolExecutor EXECUTOR = null;
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(SessionManager.class);
     /**
      * 会话对象
      */
     private static final Map<String, Session> SESSIONS = new ConcurrentHashMap<>();
-
     /**
      * 频道对象
      */
     private static final Map<String, Map<String, Session>> CHANNELS = new ConcurrentHashMap<>();
+    /**
+     * 频道（线程）数量
+     */
+    private static int CHANNEL_NUM = 15;
+    /**
+     * 线程池对象
+     */
+    private static ScheduledThreadPoolExecutor EXECUTOR = null;
 
     /**
      * 初始化方法
@@ -60,11 +60,15 @@ final class SessionManager {
      * @param session 会话对象
      */
     public static void register(String id, Session session) {
-        SESSIONS.put(id, session);
-        CHANNELS.computeIfAbsent(
-                String.valueOf(id.hashCode() % CHANNEL_NUM),
-                k -> new ConcurrentHashMap<>(16)
-        ).put(id, session);
+        synchronized (SessionManager.class) {
+            SESSIONS.put(id, session);
+            final String channel = String.valueOf(Math.abs(id.hashCode() % CHANNEL_NUM));
+            CHANNELS.computeIfAbsent(
+                    channel,
+                    k -> new ConcurrentHashMap<>(16)
+            ).put(id, session);
+            LOGGER.info("[ SESSION REGISTER ] >> {}%{}={} >>> {}", id, CHANNEL_NUM, channel, CHANNELS.get(channel));
+        }
     }
 
     /**
@@ -73,11 +77,14 @@ final class SessionManager {
      * @param id 会话编号
      */
     public static void unregister(String id) {
-        SESSIONS.remove(id);
-        final Map<String, Session> data = CHANNELS.get(
-                String.valueOf(id.hashCode() % CHANNEL_NUM));
-        if (data != null) {
-            data.remove(id);
+        synchronized (SessionManager.class) {
+            SESSIONS.remove(id);
+            final String channel = String.valueOf(Math.abs(id.hashCode() % CHANNEL_NUM));
+            final Map<String, Session> data = CHANNELS.get(channel);
+            if (data != null) {
+                data.remove(id);
+            }
+            LOGGER.info("[ SESSION UNREGISTER ] >> {}%{}={} >>> {}", id, CHANNEL_NUM, channel, CHANNELS.get(channel));
         }
     }
 
@@ -108,7 +115,13 @@ final class SessionManager {
      */
     private static List<List<Session>> getChannel() {
         final List<List<Session>> list = new ArrayList<>();
-        CHANNELS.forEach((k, v) -> list.add(new ArrayList<>(v.values())));
+        CHANNELS.forEach((k, v) -> {
+            if (!v.isEmpty()) {
+                final List<Session> sessions = new ArrayList<>(v.values());
+                list.add(sessions);
+                LOGGER.info("[ SESSION CHANNEL ] {} >>> {}", k, sessions);
+            }
+        });
         return list;
     }
 
@@ -123,6 +136,7 @@ final class SessionManager {
         final List<List<Session>> list = getChannel();
         for (final List<Session> channels : list) {
             if (channels != null && !channels.isEmpty()) {
+                LOGGER.info("[ PUSH BINARY SESSION CHANNEL ] {} >>> {}", name, Collections.singletonList(bytes));
                 submit(channels, filter, name, bytes);
             }
         }
@@ -146,6 +160,7 @@ final class SessionManager {
         final String wc = JsonUtil.toJson(data);
         for (final List<Session> channels : list) {
             if (channels != null && !channels.isEmpty()) {
+                LOGGER.info("[ PUSH TEXT SESSION CHANNEL ] {} >>> {}", name, wc);
                 submit(channels, filter, name, wc);
             }
         }
@@ -162,8 +177,10 @@ final class SessionManager {
     private static void submit(List<Session> channels, Function<User, Boolean> filter, String name, Object content) {
         EXECUTOR.submit(() -> {
             for (final Session session : channels) {
+                LOGGER.info("[ SUBMIT TASK EXECUTE ] >>> NAME CHECK >>> N:{}/SN:{} ? {}", name, session.getName(), name.equalsIgnoreCase(session.getName()));
                 if (name.equalsIgnoreCase(session.getName())) {
                     final Boolean result = filter.apply(session.getUser());
+                    LOGGER.info("[ SUBMIT TASK EXECUTE ] >>> FILTER RESULT >>> {}", result);
                     if (result != null && result) {
                         session.push(content);
                     }

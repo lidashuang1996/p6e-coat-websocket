@@ -5,6 +5,10 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import lombok.Getter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Collections;
 
 /**
  * 会话
@@ -15,40 +19,23 @@ import lombok.Getter;
 @Getter
 public final class Session {
 
-    /**
-     * 类型
-     */
-    public enum Type {
-        /**
-         * 文本
-         */
-        TEXT,
-        /**
-         * 字节码
-         */
-        BINARY
-    }
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(Session.class);
     /**
      * 消息类型
      */
     private final Type type;
-
     /**
      * 用户对象
      */
     private final User user;
-
     /**
      * 服务名称
      */
     private final String name;
-
     /**
      * 上下文对象
      */
     private final ChannelHandlerContext context;
-
     /**
      * 时间
      */
@@ -94,12 +81,28 @@ public final class Session {
     public void push(Object data) {
         if (context != null && !context.isRemoved()) {
             if (type == Type.TEXT && data instanceof String content) {
+                LOGGER.info("[ SESSION PUSH TEST MESSAGE ] >>> {}", content);
                 context.writeAndFlush(new TextWebSocketFrame(content));
             }
             if (type == Type.BINARY && data instanceof byte[] bytes) {
+                LOGGER.info("[ SESSION PUSH BINARY MESSAGE ] >>> {}", Collections.singletonList(bytes));
                 context.writeAndFlush(new BinaryWebSocketFrame(Unpooled.wrappedBuffer(bytes)));
             }
         }
+    }
+
+    /**
+     * 类型
+     */
+    public enum Type {
+        /**
+         * 文本
+         */
+        TEXT,
+        /**
+         * 字节码
+         */
+        BINARY
     }
 
 }

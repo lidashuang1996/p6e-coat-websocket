@@ -90,27 +90,27 @@ final class Handler implements ChannelInboundHandler {
 
     @Override
     public void channelRegistered(ChannelHandlerContext channelHandlerContext) {
-        LOGGER.debug("[ {} ] ==> channelRegistered", id);
+        LOGGER.info("[ {} ] ==> channelRegistered", id);
     }
 
     @Override
     public void channelUnregistered(ChannelHandlerContext channelHandlerContext) {
-        LOGGER.debug("[ {} ] ==> channelUnregistered", id);
+        LOGGER.info("[ {} ] ==> channelUnregistered", id);
     }
 
     @Override
     public void channelActive(ChannelHandlerContext channelHandlerContext) {
-        LOGGER.debug("[ {} ] ==> channelActive", id);
+        LOGGER.info("[ {} ] ==> channelActive", id);
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext channelHandlerContext) {
-        LOGGER.debug("[ {} ] ==> channelInactive", id);
+        LOGGER.info("[ {} ] ==> channelInactive", id);
     }
 
     @Override
     public void channelRead(ChannelHandlerContext channelHandlerContext, Object o) {
-        LOGGER.debug("[ {} ] ==> channelRead, msg: {}", id, o.getClass());
+        LOGGER.info("[ {} ] ==> channelRead, msg: {}", id, o.getClass());
         if (o instanceof final TextWebSocketFrame textWebSocketFrame) {
             final String text = textWebSocketFrame.text();
             if (session != null && Heartbeat.CONTENT_TEXT.equalsIgnoreCase(text)) {
@@ -142,12 +142,12 @@ final class Handler implements ChannelInboundHandler {
 
     @Override
     public void channelReadComplete(ChannelHandlerContext channelHandlerContext) {
-        LOGGER.debug("[ {} ] ==> channelReadComplete", id);
+        LOGGER.info("[ {} ] ==> channelReadComplete", id);
     }
 
     @Override
     public void userEventTriggered(ChannelHandlerContext channelHandlerContext, Object o) {
-        LOGGER.debug("[ {} ] ==> userEventTriggered, msg: {}", id, o.getClass());
+        LOGGER.info("[ {} ] ==> userEventTriggered, msg: {}", id, o.getClass());
         if (o instanceof final WebSocketServerProtocolHandler.HandshakeComplete complete) {
             final User user = auth.validate(name, Controller.getVoucher(complete.requestUri()));
             if (user == null) {
@@ -169,17 +169,17 @@ final class Handler implements ChannelInboundHandler {
 
     @Override
     public void channelWritabilityChanged(ChannelHandlerContext channelHandlerContext) {
-        LOGGER.debug("[ {} ] ==> channelWritabilityChanged", id);
+        LOGGER.info("[ {} ] ==> channelWritabilityChanged", id);
     }
 
     @Override
     public void handlerAdded(ChannelHandlerContext channelHandlerContext) {
-        LOGGER.debug("[ {} ] ==> handlerAdded", id);
+        LOGGER.info("[ {} ] ==> handlerAdded", id);
     }
 
     @Override
     public void handlerRemoved(ChannelHandlerContext channelHandlerContext) {
-        LOGGER.debug("[ {} ] ==> handlerRemoved", id);
+        LOGGER.info("[ {} ] ==> handlerRemoved", id);
         SessionManager.unregister(id);
         if (Session.Type.TEXT.name().equalsIgnoreCase(type)) {
             channelHandlerContext.writeAndFlush(new TextWebSocketFrame(LOGOUT_CONTENT_TEXT));
