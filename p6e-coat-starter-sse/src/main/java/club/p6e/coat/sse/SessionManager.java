@@ -16,24 +16,21 @@ import java.util.function.Function;
 public final class SessionManager {
 
     /**
-     * 频道（线程）数量
-     */
-    private static int CHANNEL_NUM = 15;
-
-    /**
-     * 线程池对象
-     */
-    private static ScheduledThreadPoolExecutor EXECUTOR = null;
-
-    /**
      * 会话对象
      */
     private static final Map<String, Session> SESSIONS = new ConcurrentHashMap<>();
-
     /**
      * 组对象
      */
     private static final Map<String, Map<String, Session>> GROUPS = new ConcurrentHashMap<>();
+    /**
+     * 频道（线程）数量
+     */
+    private static int CHANNEL_NUM = 15;
+    /**
+     * 线程池对象
+     */
+    private static ScheduledThreadPoolExecutor EXECUTOR = null;
 
     /**
      * 初始化方法
@@ -61,10 +58,8 @@ public final class SessionManager {
      */
     public static void register(String id, Session session) {
         SESSIONS.put(id, session);
-        GROUPS.computeIfAbsent(
-                String.valueOf(id.hashCode() % CHANNEL_NUM),
-                k -> new ConcurrentHashMap<>(16)
-        ).put(id, session);
+        final String channel = String.valueOf(Math.abs(id.hashCode() % CHANNEL_NUM));
+        GROUPS.computeIfAbsent(channel, k -> new ConcurrentHashMap<>(16)).put(id, session);
     }
 
     /**
@@ -74,8 +69,8 @@ public final class SessionManager {
      */
     public static void unregister(String id) {
         SESSIONS.remove(id);
-        final Map<String, Session> data = GROUPS.get(
-                String.valueOf(id.hashCode() % CHANNEL_NUM));
+        final String channel = String.valueOf(Math.abs(id.hashCode() % CHANNEL_NUM));
+        final Map<String, Session> data = GROUPS.get(channel);
         if (data != null) {
             data.remove(id);
         }
