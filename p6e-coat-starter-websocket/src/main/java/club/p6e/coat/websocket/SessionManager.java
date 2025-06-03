@@ -15,7 +15,7 @@ import java.util.function.Function;
  * @author lidashuang
  * @version 1.0
  */
-final class SessionManager {
+public final class SessionManager {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SessionManager.class);
     /**
@@ -106,6 +106,15 @@ final class SessionManager {
      */
     public static Iterator<Session> all() {
         return SESSIONS.values().iterator();
+    }
+
+    /**
+     * 读取全部会话
+     *
+     * @return 全部会话对象
+     */
+    public static Set<String> keys() {
+        return SESSIONS.keySet();
     }
 
     /**

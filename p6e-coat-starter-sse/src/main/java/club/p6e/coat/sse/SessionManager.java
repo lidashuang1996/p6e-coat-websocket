@@ -96,6 +96,11 @@ public final class SessionManager {
         return SESSIONS.values().iterator();
     }
 
+    @SuppressWarnings("ALL")
+    public static Set<String> keys() {
+        return SESSIONS.keySet();
+    }
+
     /**
      * 推送消息
      *
